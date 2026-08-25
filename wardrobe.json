@@ -1,0 +1,1851 @@
+[
+  {
+    "id": 2,
+    "name": "白棒球帽",
+    "category": "帽子",
+    "color": "白",
+    "style": "棒球帽",
+    "brand": "",
+    "material": "棉",
+    "seasons": [
+      "春",
+      "夏",
+      "秋",
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "黑底刺绣狗头图案",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/002.png"
+  },
+  {
+    "id": 3,
+    "name": "卡其圆顶草帽",
+    "category": "帽子",
+    "color": "卡其",
+    "style": "圆顶草帽",
+    "brand": "",
+    "material": "草绳",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "全身照；宽檐编织、几何印花",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/003.png"
+  },
+  {
+    "id": 4,
+    "name": "绿棒球帽",
+    "category": "帽子",
+    "color": "绿",
+    "style": "棒球帽",
+    "brand": "aimeewq小怪兽",
+    "material": "棉",
+    "seasons": [
+      "春",
+      "夏",
+      "秋",
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "立体金属徽章",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/004.png"
+  },
+  {
+    "id": 5,
+    "name": "橙针织帽",
+    "category": "帽子",
+    "color": "橙",
+    "style": "针织帽",
+    "brand": "",
+    "material": "毛线",
+    "seasons": [
+      "秋",
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "全身照；字母印花",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/005.png"
+  },
+  {
+    "id": 6,
+    "name": "红针织马甲",
+    "category": "背心",
+    "color": "红",
+    "style": "针织马甲",
+    "brand": "",
+    "material": "毛线",
+    "seasons": [
+      "秋",
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "全身照；红马甲配白衬衫叠穿",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/006.png"
+  },
+  {
+    "id": 7,
+    "name": "灰针织马甲",
+    "category": "背心",
+    "color": "灰",
+    "style": "针织马甲",
+    "brand": "",
+    "material": "毛线",
+    "seasons": [
+      "秋",
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "罗纹款式",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/007.png"
+  },
+  {
+    "id": 8,
+    "name": "黑针织马甲",
+    "category": "背心",
+    "color": "黑",
+    "style": "针织马甲",
+    "brand": "",
+    "material": "绵",
+    "seasons": [
+      "秋",
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "网眼纹理",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/008.png"
+  },
+  {
+    "id": 9,
+    "name": "米白针织背心",
+    "category": "背心",
+    "color": "米白",
+    "style": "针织背心",
+    "brand": "",
+    "material": "棉",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "极简风",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/009.png"
+  },
+  {
+    "id": 10,
+    "name": "白羽绒马甲",
+    "category": "背心",
+    "color": "白",
+    "style": "羽绒马甲",
+    "brand": "",
+    "material": "羽绒",
+    "seasons": [
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "白羽绒背心",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/010.png"
+  },
+  {
+    "id": 11,
+    "name": "浅紫短袖衬衫上衣",
+    "category": "上衣",
+    "color": "浅紫",
+    "style": "短袖衬衫",
+    "brand": "",
+    "material": "棉",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "个性衬衣",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/011.png"
+  },
+  {
+    "id": 12,
+    "name": "白短袖T恤上衣",
+    "category": "上衣",
+    "color": "白",
+    "style": "短袖T恤",
+    "brand": "",
+    "material": "聚酯纤维",
+    "seasons": [
+      "春",
+      "夏",
+      "秋",
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "打底衫",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/012.png"
+  },
+  {
+    "id": 13,
+    "name": "米长袖T恤上衣",
+    "category": "上衣",
+    "color": "米",
+    "style": "长袖T恤",
+    "brand": "",
+    "material": "棉",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "印花T恤",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/013.png"
+  },
+  {
+    "id": 14,
+    "name": "红短袖T恤上衣",
+    "category": "上衣",
+    "color": "红",
+    "style": "短袖T恤",
+    "brand": "",
+    "material": "棉",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "印花T恤",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/014.png"
+  },
+  {
+    "id": 15,
+    "name": "粉中袖衬衫上衣",
+    "category": "上衣",
+    "color": "粉",
+    "style": "中袖衬衫",
+    "brand": "",
+    "material": "丝棉",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "淑女风",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/015.png"
+  },
+  {
+    "id": 16,
+    "name": "灰针织衫上衣",
+    "category": "上衣",
+    "color": "灰",
+    "style": "针织衫",
+    "brand": "",
+    "material": "毛线",
+    "seasons": [
+      "秋",
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "个性毛衣",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/016.png"
+  },
+  {
+    "id": 17,
+    "name": "深灰短袖T恤上衣",
+    "category": "上衣",
+    "color": "深灰",
+    "style": "短袖T恤",
+    "brand": "罗奈",
+    "material": "棉",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "(品牌文字待核对)",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/017.png"
+  },
+  {
+    "id": 18,
+    "name": "白长袖衬衫上衣",
+    "category": "上衣",
+    "color": "白",
+    "style": "长袖衬衫",
+    "brand": "天衣洛洛",
+    "material": "棉",
+    "seasons": [
+      "春",
+      "秋"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "外罩衬衣",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/018.png"
+  },
+  {
+    "id": 19,
+    "name": "绿白圆领短袖袖衫上衣",
+    "category": "上衣",
+    "color": "绿白",
+    "style": "圆领短袖袖衫",
+    "brand": "",
+    "material": "棉",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "横条纹",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/019.png"
+  },
+  {
+    "id": 20,
+    "name": "蓝立领长袖衬衫上衣",
+    "category": "上衣",
+    "color": "蓝",
+    "style": "立领长袖衬衫",
+    "brand": "",
+    "material": "聚酯纤维",
+    "seasons": [
+      "春",
+      "秋"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "纯色",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/020.png"
+  },
+  {
+    "id": 21,
+    "name": "深蓝碎花短袖衫上衣",
+    "category": "上衣",
+    "color": "深蓝",
+    "style": "碎花短袖衫",
+    "brand": "新加坡",
+    "material": "棉",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "满底碎花",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/021.png"
+  },
+  {
+    "id": 22,
+    "name": "浅绿碎花短袖衫上衣",
+    "category": "上衣",
+    "color": "浅绿",
+    "style": "碎花短袖衫",
+    "brand": "新加坡",
+    "material": "棉",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "满底彩色碎花",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/022.png"
+  },
+  {
+    "id": 23,
+    "name": "灰V领短袖衫上衣",
+    "category": "上衣",
+    "color": "灰",
+    "style": "V领短袖衫",
+    "brand": "",
+    "material": "棉",
+    "seasons": [
+      "春",
+      "秋"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "竖坑条肌理",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/023.png"
+  },
+  {
+    "id": 24,
+    "name": "米黄V领短袖针织衫上衣",
+    "category": "上衣",
+    "color": "米黄",
+    "style": "V领短袖针织衫",
+    "brand": "",
+    "material": "棉",
+    "seasons": [
+      "春",
+      "秋"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "针织材质",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/024.png"
+  },
+  {
+    "id": 25,
+    "name": "黑短袖Polo衫上衣",
+    "category": "上衣",
+    "color": "黑",
+    "style": "短袖Polo衫",
+    "brand": "Polo",
+    "material": "棉",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "胸前刺绣Logo",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/025.png"
+  },
+  {
+    "id": 26,
+    "name": "白圆领短袖T恤上衣",
+    "category": "上衣",
+    "color": "白",
+    "style": "圆领短袖T恤",
+    "brand": "Polo",
+    "material": "棉",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "彩色风景印花",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/026.png"
+  },
+  {
+    "id": 27,
+    "name": "白圆领短袖T恤上衣",
+    "category": "上衣",
+    "color": "白",
+    "style": "圆领短袖T恤",
+    "brand": "aimeewq小怪兽",
+    "material": "棉",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "卡通刺绣贴袋",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/027.png"
+  },
+  {
+    "id": 28,
+    "name": "白圆领短袖T恤上衣",
+    "category": "上衣",
+    "color": "白",
+    "style": "圆领短袖T恤",
+    "brand": "",
+    "material": "棉",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "全身照；迪士尼满印",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/028.png"
+  },
+  {
+    "id": 29,
+    "name": "粉短袖T恤上衣",
+    "category": "上衣",
+    "color": "粉",
+    "style": "短袖T恤",
+    "brand": "aimeewq小怪兽",
+    "material": "棉",
+    "seasons": [
+      "春",
+      "夏",
+      "秋"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "印花字母",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/029.png"
+  },
+  {
+    "id": 30,
+    "name": "白短袖T恤上衣",
+    "category": "上衣",
+    "color": "白",
+    "style": "短袖T恤",
+    "brand": "aimeewq小怪兽",
+    "material": "棉",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "荷叶边/天使印花",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/030.png"
+  },
+  {
+    "id": 31,
+    "name": "黄短袖T恤上衣",
+    "category": "上衣",
+    "color": "黄",
+    "style": "短袖T恤",
+    "brand": "aimeewq小怪兽",
+    "material": "棉",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "扎染印花",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/031.png"
+  },
+  {
+    "id": 32,
+    "name": "黄短袖T恤上衣",
+    "category": "上衣",
+    "color": "黄",
+    "style": "短袖T恤",
+    "brand": "aimeewq小怪兽",
+    "material": "棉",
+    "seasons": [
+      "春",
+      "夏",
+      "秋"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "纯色",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/032.png"
+  },
+  {
+    "id": 33,
+    "name": "棕短袖T恤上衣",
+    "category": "上衣",
+    "color": "棕",
+    "style": "短袖T恤",
+    "brand": "西町村屋",
+    "material": "棉",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "202607",
+    "note": "纯色",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/033.png"
+  },
+  {
+    "id": 34,
+    "name": "灰短袖T恤上衣",
+    "category": "上衣",
+    "color": "灰",
+    "style": "短袖T恤",
+    "brand": "西町村屋",
+    "material": "棉",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "202607",
+    "note": "纯色",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/034.png"
+  },
+  {
+    "id": 35,
+    "name": "黑短袖T恤上衣",
+    "category": "上衣",
+    "color": "黑",
+    "style": "短袖T恤",
+    "brand": "西町村屋",
+    "material": "棉",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "202607",
+    "note": "纯色",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/035.png"
+  },
+  {
+    "id": 36,
+    "name": "蓝牛仔短裤裤子",
+    "category": "裤子",
+    "color": "蓝",
+    "style": "牛仔短裤",
+    "brand": "西町村屋",
+    "material": "棉",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "202607",
+    "note": "纯色",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/036.png"
+  },
+  {
+    "id": 37,
+    "name": "米阔腿裤",
+    "category": "裤子",
+    "color": "米",
+    "style": "阔腿裤",
+    "brand": "",
+    "material": "棉",
+    "seasons": [
+      "春",
+      "夏",
+      "秋",
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "全身照；高腰卷边",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/037.png"
+  },
+  {
+    "id": 38,
+    "name": "黑休闲裤",
+    "category": "裤子",
+    "color": "黑",
+    "style": "休闲裤",
+    "brand": "",
+    "material": "棉",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "全身照；宽松休闲风",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/038.png"
+  },
+  {
+    "id": 39,
+    "name": "棕休闲裤",
+    "category": "裤子",
+    "color": "棕",
+    "style": "休闲裤",
+    "brand": "",
+    "material": "毛",
+    "seasons": [
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "抽绳阔腿裤",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/039.png"
+  },
+  {
+    "id": 40,
+    "name": "黑休闲裤",
+    "category": "裤子",
+    "color": "黑",
+    "style": "休闲裤",
+    "brand": "",
+    "material": "棉",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "全身照；宽松街头风",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/040.png"
+  },
+  {
+    "id": 41,
+    "name": "米阔腿裤",
+    "category": "裤子",
+    "color": "米",
+    "style": "阔腿裤",
+    "brand": "",
+    "material": "聚酯纤维",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "全身照；纯色",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/041.png"
+  },
+  {
+    "id": 42,
+    "name": "浅灰束脚卫裤",
+    "category": "裤子",
+    "color": "浅灰",
+    "style": "束脚卫裤",
+    "brand": "Yankee",
+    "material": "棉",
+    "seasons": [
+      "春",
+      "夏",
+      "秋"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "全身照；裤脚印黑底白纹B字母",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/042.png"
+  },
+  {
+    "id": 43,
+    "name": "黑束脚卫裤",
+    "category": "裤子",
+    "color": "黑",
+    "style": "束脚卫裤",
+    "brand": "",
+    "material": "毛",
+    "seasons": [
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "白色抽绳",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/043.png"
+  },
+  {
+    "id": 44,
+    "name": "灰束脚卫裤",
+    "category": "裤子",
+    "color": "灰",
+    "style": "束脚卫裤",
+    "brand": "",
+    "material": "棉",
+    "seasons": [
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "臀部白色刺绣Logo",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/044.png"
+  },
+  {
+    "id": 45,
+    "name": "深咖工装裤",
+    "category": "裤子",
+    "color": "深咖",
+    "style": "工装裤",
+    "brand": "",
+    "material": "棉",
+    "seasons": [
+      "春",
+      "秋",
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "全身照；多口袋、绑带",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/045.png"
+  },
+  {
+    "id": 46,
+    "name": "藕粉阔腿裤",
+    "category": "裤子",
+    "color": "藕粉",
+    "style": "阔腿裤",
+    "brand": "",
+    "material": "棉",
+    "seasons": [
+      "春",
+      "秋",
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "全身照；灯芯绒、前腰褶皱",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/046.png"
+  },
+  {
+    "id": 47,
+    "name": "藏青束脚卫裤",
+    "category": "裤子",
+    "color": "藏青",
+    "style": "束脚卫裤",
+    "brand": "",
+    "material": "棉",
+    "seasons": [
+      "春",
+      "秋"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "臀部浅色心形刺绣",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/047.png"
+  },
+  {
+    "id": 48,
+    "name": "藏青束脚卫裤",
+    "category": "裤子",
+    "color": "藏青",
+    "style": "束脚卫裤",
+    "brand": "",
+    "material": "棉",
+    "seasons": [
+      "春",
+      "秋"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "大腿白色品牌织标",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/048.png"
+  },
+  {
+    "id": 49,
+    "name": "卡其阔腿五分裤",
+    "category": "裤子",
+    "color": "卡其",
+    "style": "阔腿五分裤",
+    "brand": "",
+    "material": "棉",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "全身照；裤脚圆形纽扣",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/049.png"
+  },
+  {
+    "id": 50,
+    "name": "米/深棕针织开衫+半身裙",
+    "category": "裙子",
+    "color": "米/深棕",
+    "style": "针织开衫+半身裙",
+    "brand": "",
+    "material": "",
+    "seasons": [
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "全身照；深色翻领",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/050.png"
+  },
+  {
+    "id": 51,
+    "name": "紫棉麻抽绳半身裙",
+    "category": "裙子",
+    "color": "紫",
+    "style": "棉麻抽绳半身裙",
+    "brand": "",
+    "material": "",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "纯色简约",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/051.png"
+  },
+  {
+    "id": 52,
+    "name": "黑/灰宽松抽绳伞裙",
+    "category": "裙子",
+    "color": "黑/灰",
+    "style": "宽松抽绳伞裙",
+    "brand": "",
+    "material": "",
+    "seasons": [
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "全身照；仿皮材质",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/052.png"
+  },
+  {
+    "id": 53,
+    "name": "深灰抽绳松紧腰半身裙",
+    "category": "裙子",
+    "color": "深灰",
+    "style": "抽绳松紧腰半身裙",
+    "brand": "",
+    "material": "",
+    "seasons": [
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/053.png"
+  },
+  {
+    "id": 54,
+    "name": "蓝绿无袖印花连衣裙",
+    "category": "裙子",
+    "color": "蓝绿",
+    "style": "无袖印花连衣裙",
+    "brand": "新加坡",
+    "material": "",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "全身照；孔雀羽毛状印花",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/054.png"
+  },
+  {
+    "id": 55,
+    "name": "深灰大摆伞裙",
+    "category": "裙子",
+    "color": "深灰",
+    "style": "大摆伞裙",
+    "brand": "西町村屋",
+    "material": "",
+    "seasons": [
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "毛绒材质",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/055.png"
+  },
+  {
+    "id": 56,
+    "name": "咖复古格纹半身裙",
+    "category": "裙子",
+    "color": "咖",
+    "style": "复古格纹半身裙",
+    "brand": "",
+    "material": "",
+    "seasons": [
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "格纹拼接",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/056.png"
+  },
+  {
+    "id": 57,
+    "name": "驼A字半身裙",
+    "category": "裙子",
+    "color": "驼",
+    "style": "A字半身裙",
+    "brand": "",
+    "material": "",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "纯色简约",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/057.png"
+  },
+  {
+    "id": 58,
+    "name": "深棕直筒半身裙",
+    "category": "裙子",
+    "color": "深棕",
+    "style": "直筒半身裙",
+    "brand": "",
+    "material": "",
+    "seasons": [
+      "秋",
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "全身照；纯色简约",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/058.png"
+  },
+  {
+    "id": 59,
+    "name": "藏青圆领卫衣",
+    "category": "卫衣",
+    "color": "藏青",
+    "style": "圆领卫衣",
+    "brand": "",
+    "material": "",
+    "seasons": [
+      "秋",
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "袖口条纹、胸前红标",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/059.png"
+  },
+  {
+    "id": 60,
+    "name": "深蓝连帽卫衣",
+    "category": "卫衣",
+    "color": "深蓝",
+    "style": "连帽卫衣",
+    "brand": "",
+    "material": "",
+    "seasons": [
+      "春",
+      "秋",
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "胸前印花图案",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/060.png"
+  },
+  {
+    "id": 61,
+    "name": "浅灰连帽卫衣",
+    "category": "卫衣",
+    "color": "浅灰",
+    "style": "连帽卫衣",
+    "brand": "",
+    "material": "",
+    "seasons": [
+      "春",
+      "秋",
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "胸前刺绣Logo及贴布",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/061.png"
+  },
+  {
+    "id": 62,
+    "name": "玫红连帽卫衣",
+    "category": "卫衣",
+    "color": "玫红",
+    "style": "连帽卫衣",
+    "brand": "",
+    "material": "",
+    "seasons": [
+      "春",
+      "秋",
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "纯色",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/062.png"
+  },
+  {
+    "id": 63,
+    "name": "灰圆领卫衣",
+    "category": "卫衣",
+    "color": "灰",
+    "style": "圆领卫衣",
+    "brand": "",
+    "material": "",
+    "seasons": [
+      "春",
+      "秋",
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "全身照；领口装饰领带",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/063.png"
+  },
+  {
+    "id": 64,
+    "name": "灰圆领卫衣",
+    "category": "卫衣",
+    "color": "灰",
+    "style": "圆领卫衣",
+    "brand": "",
+    "material": "",
+    "seasons": [
+      "春",
+      "秋"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "全身照；假两件衬衫领；另见裙子分组",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/064.png"
+  },
+  {
+    "id": 65,
+    "name": "枣红连帽卫衣",
+    "category": "卫衣",
+    "color": "枣红",
+    "style": "连帽卫衣",
+    "brand": "",
+    "material": "",
+    "seasons": [
+      "春",
+      "秋"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "纯色",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/065.png"
+  },
+  {
+    "id": 66,
+    "name": "米白连帽卫衣",
+    "category": "卫衣",
+    "color": "米白",
+    "style": "连帽卫衣",
+    "brand": "",
+    "material": "",
+    "seasons": [
+      "春",
+      "秋",
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "全身照；胸前大字母印花",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/066.png"
+  },
+  {
+    "id": 67,
+    "name": "棕针织马甲卫衣",
+    "category": "卫衣",
+    "color": "棕",
+    "style": "针织马甲",
+    "brand": "",
+    "material": "",
+    "seasons": [
+      "春",
+      "秋",
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "全身照；叠穿格纹衬衫配裙装",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/067.png"
+  },
+  {
+    "id": 68,
+    "name": "灰白圆领卫衣",
+    "category": "卫衣",
+    "color": "灰白",
+    "style": "圆领卫衣",
+    "brand": "",
+    "material": "",
+    "seasons": [
+      "春",
+      "秋",
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "全身照；胸前刺绣黑色字母",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/068.png"
+  },
+  {
+    "id": 69,
+    "name": "卡其摇粒绒半拉链卫衣",
+    "category": "卫衣",
+    "color": "卡其",
+    "style": "摇粒绒半拉链卫衣",
+    "brand": "",
+    "material": "",
+    "seasons": [
+      "秋",
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "全身照；毛绒材质、胸前胶印",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/069.png"
+  },
+  {
+    "id": 70,
+    "name": "黑长袖拉链上衣卫衣",
+    "category": "卫衣",
+    "color": "黑",
+    "style": "长袖拉链上衣",
+    "brand": "Nike",
+    "material": "",
+    "seasons": [
+      "春",
+      "秋"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "运动T恤",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/070.png"
+  },
+  {
+    "id": 71,
+    "name": "米连帽拼接羽绒服外套",
+    "category": "外套",
+    "color": "米",
+    "style": "连帽拼接羽绒服",
+    "brand": "Canada Goose",
+    "material": "",
+    "seasons": [
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "全身照；左臂徽章",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/071.png"
+  },
+  {
+    "id": 72,
+    "name": "黑连帽菱格羽绒服外套",
+    "category": "外套",
+    "color": "黑",
+    "style": "连帽菱格羽绒服",
+    "brand": "",
+    "material": "",
+    "seasons": [
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "V型绗缝",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/072.png"
+  },
+  {
+    "id": 73,
+    "name": "紫连帽菱格羽绒服外套",
+    "category": "外套",
+    "color": "紫",
+    "style": "连帽菱格羽绒服",
+    "brand": "",
+    "material": "",
+    "seasons": [
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "V型绗缝",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/073.png"
+  },
+  {
+    "id": 74,
+    "name": "深棕连帽羽绒服外套",
+    "category": "外套",
+    "color": "深棕",
+    "style": "连帽羽绒服",
+    "brand": "",
+    "material": "",
+    "seasons": [
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "202602",
+    "note": "全身照；内搭条纹衫",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/074.png"
+  },
+  {
+    "id": 75,
+    "name": "深棕拼接仿羊羔毛外套",
+    "category": "外套",
+    "color": "深棕",
+    "style": "拼接仿羊羔毛外套",
+    "brand": "",
+    "material": "",
+    "seasons": [
+      "春",
+      "秋",
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "202602",
+    "note": "全身照；口袋拼接羽绒",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/075.png"
+  },
+  {
+    "id": 76,
+    "name": "黑短款皮衣外套",
+    "category": "外套",
+    "color": "黑",
+    "style": "短款皮衣",
+    "brand": "",
+    "material": "",
+    "seasons": [
+      "春",
+      "秋"
+    ],
+    "occasion": "",
+    "purchase_date": "202602",
+    "note": "全身照；袖口翻折格纹",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/076.png"
+  },
+  {
+    "id": 77,
+    "name": "黑长款收腰羽绒服外套",
+    "category": "外套",
+    "color": "黑",
+    "style": "长款收腰羽绒服",
+    "brand": "Moncler",
+    "material": "",
+    "seasons": [
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "全身照；菱格绗缝",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/077.png"
+  },
+  {
+    "id": 78,
+    "name": "米白连帽卫衣外套",
+    "category": "外套",
+    "color": "米白",
+    "style": "连帽卫衣",
+    "brand": "MLB",
+    "material": "",
+    "seasons": [
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "背部刺绣LOGO",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/078.png"
+  },
+  {
+    "id": 79,
+    "name": "墨绿派克服外套",
+    "category": "外套",
+    "color": "墨绿",
+    "style": "派克服",
+    "brand": "DAZI折扣店",
+    "material": "",
+    "seasons": [
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "大毛领",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/079.png"
+  },
+  {
+    "id": 80,
+    "name": "白针织开衫外套",
+    "category": "外套",
+    "color": "白",
+    "style": "针织开衫",
+    "brand": "天依洛洛",
+    "material": "",
+    "seasons": [
+      "春",
+      "秋"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "黑色纽扣",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/080.png"
+  },
+  {
+    "id": 81,
+    "name": "深棕短款外套",
+    "category": "外套",
+    "color": "深棕",
+    "style": "短款外套",
+    "brand": "",
+    "material": "",
+    "seasons": [
+      "春",
+      "秋"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "翻领带口袋",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/081.png"
+  },
+  {
+    "id": 82,
+    "name": "粉连帽开衫外套",
+    "category": "外套",
+    "color": "粉",
+    "style": "连帽开衫",
+    "brand": "",
+    "material": "",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "纯色",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/082.png"
+  },
+  {
+    "id": 83,
+    "name": "粉轻薄羽绒服外套",
+    "category": "外套",
+    "color": "粉",
+    "style": "轻薄羽绒服",
+    "brand": "鸭鸭",
+    "material": "",
+    "seasons": [
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "全身照；横条纹",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/083.png"
+  },
+  {
+    "id": 84,
+    "name": "灰蓝轻薄羽绒服外套",
+    "category": "外套",
+    "color": "灰蓝",
+    "style": "轻薄羽绒服",
+    "brand": "YAYA鸭鸭",
+    "material": "",
+    "seasons": [
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "全身照；模特上身",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/084.png"
+  },
+  {
+    "id": 85,
+    "name": "浅蓝棒球服外套",
+    "category": "外套",
+    "color": "浅蓝",
+    "style": "棒球服",
+    "brand": "ANTA",
+    "material": "",
+    "seasons": [
+      "春",
+      "秋",
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "全身照；胸前刺绣logo",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/085.png"
+  },
+  {
+    "id": 86,
+    "name": "黑棒球服外套",
+    "category": "外套",
+    "color": "黑",
+    "style": "棒球服",
+    "brand": "FILA",
+    "material": "",
+    "seasons": [
+      "秋",
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "全身照；袖标logo/胸前印花",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/086.png"
+  },
+  {
+    "id": 87,
+    "name": "黑冲锋衣外套",
+    "category": "外套",
+    "color": "黑",
+    "style": "冲锋衣",
+    "brand": "",
+    "material": "",
+    "seasons": [
+      "春",
+      "夏",
+      "秋"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "全身照；肩部暗纹拼接",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/087.png"
+  },
+  {
+    "id": 88,
+    "name": "薄荷绿防晒衣外套",
+    "category": "外套",
+    "color": "薄荷绿",
+    "style": "防晒衣",
+    "brand": "",
+    "material": "",
+    "seasons": [
+      "春",
+      "夏",
+      "秋"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "全身照；暗纹印花",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/088.png"
+  },
+  {
+    "id": 89,
+    "name": "多色电商商品截图(4件单品)大衣",
+    "category": "大衣",
+    "color": "多色",
+    "style": "电商商品截图(4件单品)",
+    "brand": "",
+    "material": "",
+    "seasons": [
+      "春",
+      "秋",
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "原图为商品列表截图：棕色假两件针织衫/白色荷叶边假领子/白色系带假领子/棕色木耳边假领子，需人工确认是否拆分录入",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/089.png"
+  },
+  {
+    "id": 90,
+    "name": "棕牛角扣大衣",
+    "category": "大衣",
+    "color": "棕",
+    "style": "牛角扣大衣",
+    "brand": "西町村屋",
+    "material": "羊绒",
+    "seasons": [
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "202602",
+    "note": "全身照；含配套帽靴",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/090.png"
+  },
+  {
+    "id": 91,
+    "name": "浅蓝白短袖T恤荷叶边短裙套装",
+    "category": "裙子",
+    "color": "浅蓝+白",
+    "style": "短袖T恤+荷叶边短裙套装",
+    "brand": "蓝莓",
+    "material": "棉",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "202607",
+    "note": "胸前刺绣logo，多层褶皱荷叶边",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/091.png"
+  },
+  {
+    "id": 92,
+    "name": "白色方领泡泡袖连衣裙",
+    "category": "连衣裙",
+    "color": "白",
+    "style": "方领泡泡袖连衣裙",
+    "brand": "MOUSSY",
+    "material": "棉",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "202607",
+    "note": "胸前系带领结、收腰、层叠荷叶边",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/092.png"
+  },
+  {
+    "id": 93,
+    "name": "白方领泡泡袖连衣裙",
+    "category": "连衣裙",
+    "color": "白",
+    "style": "方领泡泡袖连衣裙",
+    "brand": "新加坡",
+    "material": "棉",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "202602",
+    "note": "胸前系带领结、收腰、层叠荷叶边",
+    "created_at": "2026-08-23",
+    "image": "thumbnails/093.png"
+  },
+  {
+    "id": 94,
+    "name": "黑色卡通印花T恤",
+    "category": "上衣",
+    "color": "黑",
+    "style": "卡通印花T恤",
+    "brand": "UNIQLO",
+    "material": "棉",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "胸前6格白色方框卡通人脸印花（墨镜/猫耳/爆炸头）",
+    "created_at": "2026-08-25",
+    "image": "thumbnails/094.png"
+  },
+  {
+    "id": 95,
+    "name": "中蓝水洗直筒牛仔裤",
+    "category": "裤子",
+    "color": "蓝",
+    "style": "水洗直筒牛仔裤",
+    "brand": "UNIQLO",
+    "material": "棉",
+    "seasons": [
+      "春",
+      "夏",
+      "秋"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "高腰直筒剪裁，配棕色皮带",
+    "created_at": "2026-08-25",
+    "image": "thumbnails/095.png"
+  },
+  {
+    "id": 96,
+    "name": "米黄防晒空顶帽",
+    "category": "帽子",
+    "color": "米黄",
+    "style": "防晒空顶帽",
+    "brand": "MOISTURE",
+    "material": "编织布",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "编织布料、黑色帽檐边和头带、帽围可调节，头带内侧品牌文字MOISTURE",
+    "created_at": "2026-08-25",
+    "image": "thumbnails/096.png"
+  },
+  {
+    "id": 97,
+    "name": "军绿水洗棒球帽",
+    "category": "帽子",
+    "color": "军绿",
+    "style": "水洗棒球帽",
+    "brand": "MOONOOD",
+    "material": "棉",
+    "seasons": [
+      "春",
+      "夏",
+      "秋",
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "做旧褶皱，正面白色心形刺绣含卡通眼睛+MOONOOD字样",
+    "created_at": "2026-08-25",
+    "image": "thumbnails/097.png"
+  },
+  {
+    "id": 98,
+    "name": "灰黑水洗牛仔棒球帽",
+    "category": "帽子",
+    "color": "灰黑",
+    "style": "水洗牛仔棒球帽",
+    "brand": "",
+    "material": "棉",
+    "seasons": [
+      "春",
+      "夏",
+      "秋",
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "水洗做旧、多处破洞设计，正面白色刺绣Believe YOURSELF，街头复古风",
+    "created_at": "2026-08-25",
+    "image": "thumbnails/098.png"
+  },
+  {
+    "id": 99,
+    "name": "米白棒球帽",
+    "category": "帽子",
+    "color": "米白",
+    "style": "棒球帽",
+    "brand": "",
+    "material": "棉",
+    "seasons": [
+      "春",
+      "夏",
+      "秋",
+      "冬"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "正面绿色刺绣MUIR WOODS CALIFORNIA及树木图案",
+    "created_at": "2026-08-25",
+    "image": "thumbnails/099.png"
+  },
+  {
+    "id": 100,
+    "name": "黑色水洗做旧短袖T恤",
+    "category": "上衣",
+    "color": "黑色",
+    "style": "水洗做旧短袖T恤",
+    "brand": "KARZO",
+    "material": "",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "左胸毛绒玩偶+白色KARZO字样，左下摆CANVAS 2020织标",
+    "created_at": "2026-08-25",
+    "image": "thumbnails/100.png"
+  },
+  {
+    "id": 101,
+    "name": "淡紫色圆领短袖T恤",
+    "category": "上衣",
+    "color": "淡紫色",
+    "style": "圆领短袖T恤",
+    "brand": "",
+    "material": "",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "胸口水钻蝴蝶结图案",
+    "created_at": "2026-08-25",
+    "image": "thumbnails/101.png"
+  },
+  {
+    "id": 102,
+    "name": "深咖啡色长袖T恤",
+    "category": "上衣",
+    "color": "深咖啡色",
+    "style": "长袖T恤",
+    "brand": "UNIQLO",
+    "material": "",
+    "seasons": [
+      "春",
+      "秋"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "左胸卡通小动物+Do it Yourself字样，UNIQLO UT系列",
+    "created_at": "2026-08-25",
+    "image": "thumbnails/102.png"
+  },
+  {
+    "id": 103,
+    "name": "浅粉色圆领短袖T恤",
+    "category": "上衣",
+    "color": "浅粉色",
+    "style": "圆领短袖T恤",
+    "brand": "",
+    "material": "",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "胸前黑色线条卡通图案+竖排英文字母",
+    "created_at": "2026-08-25",
+    "image": "thumbnails/103.png"
+  },
+  {
+    "id": 104,
+    "name": "蓝色碎花长裙",
+    "category": "裙子",
+    "color": "蓝色",
+    "style": "碎花长裙",
+    "brand": "",
+    "material": "",
+    "seasons": [
+      "春",
+      "夏",
+      "秋"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "下半拼接米白蕾丝，裙摆流苏",
+    "created_at": "2026-08-25",
+    "image": "thumbnails/104.png"
+  },
+  {
+    "id": 105,
+    "name": "浅黄绿色短袖T恤",
+    "category": "上衣",
+    "color": "浅黄绿色",
+    "style": "短袖T恤",
+    "brand": "New Balance",
+    "material": "",
+    "seasons": [
+      "夏"
+    ],
+    "occasion": "",
+    "purchase_date": "",
+    "note": "左胸同色压印New Balance Logo，腰部两侧抽绳",
+    "created_at": "2026-08-25",
+    "image": "thumbnails/105.png"
+  }
+]

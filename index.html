@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我的衣橱</title>
+<style>
+  :root{
+    --bg:#f6f4ef; --card:#ffffff; --text:#2b2b2b; --sub:#8a8578;
+    --line:#e8e4da; --accent:#b08968; --accent-dark:#8f6b4e;
+    --spring:#7fb069; --summer:#e9a23b; --autumn:#c96f4a; --winter:#5b7f9e;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; background:var(--bg); color:var(--text); padding-bottom:60px;}
+  header{background:linear-gradient(135deg,#b08968,#8f6b4e); color:#fff; padding:26px 20px 18px; text-align:center;}
+  header h1{font-size:24px; letter-spacing:2px;}
+  header p{font-size:13px; opacity:.85; margin-top:6px;}
+  .container{max-width:1180px; margin:0 auto; padding:16px;}
+
+  /* 统计看板 */
+  .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:16px;}
+  .stat{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:12px 10px; text-align:center;}
+  .stat .num{font-size:24px; font-weight:700; color:var(--accent-dark);}
+  .stat .label{font-size:12px; color:var(--sub); margin-top:2px;}
+
+  /* 筛选栏 */
+  .filters{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:12px; margin-bottom:16px;}
+  .filter-row{display:flex; flex-wrap:wrap; gap:8px; align-items:center;}
+  .filter-row .ft{font-size:13px; color:var(--sub); margin-right:4px;}
+  .chip{border:1px solid var(--line); background:#faf8f4; color:var(--text); border-radius:999px; padding:5px 14px; font-size:13px; cursor:pointer; transition:.15s;}
+  .chip.active{background:var(--accent); color:#fff; border-color:var(--accent);}
+  .chip:hover{border-color:var(--accent);}
+
+  /* 穿搭推荐 */
+  .recommend{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px; margin-bottom:16px; border-left:5px solid var(--accent);}
+  .recommend h2{font-size:16px; margin-bottom:10px;}
+  .rec-season{display:inline-block; padding:2px 12px; border-radius:999px; color:#fff; font-size:12px; margin-left:8px; vertical-align:middle;}
+  .rec-items{display:flex; flex-wrap:wrap; gap:12px; margin:12px 0;}
+  .rec-item{background:#faf8f4; border:1px solid var(--line); border-radius:10px; padding:10px 14px; min-width:130px; text-align:center;}
+  .rec-item .rt{font-size:12px; color:var(--sub);}
+  .rec-item .rn{font-size:14px; font-weight:600; margin-top:4px;}
+  .rec-reason{font-size:13px; color:var(--sub); line-height:1.6;}
+  .btn{background:var(--accent); color:#fff; border:none; border-radius:8px; padding:8px 18px; font-size:13px; cursor:pointer;}
+  .btn:hover{background:var(--accent-dark);}
+  .btn.ghost{background:transparent; color:var(--accent-dark); border:1px solid var(--accent);}
+
+  /* 推荐视图切换 */
+  .rec-viewbar{display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:10px;}
+  .rec-viewbar .vt{font-size:13px; color:var(--sub); margin-right:4px;}
+  .rec-view{display:none;}
+  .rec-view.active{display:block;}
+
+  /* 视图A 上下堆叠 */
+  .stack{display:flex; flex-direction:column; align-items:center; gap:10px; margin:14px 0;}
+  .stack-item{display:flex; align-items:center; gap:12px; background:#faf8f4; border:1px solid var(--line); border-radius:12px; padding:8px 14px 8px 8px; width:100%; max-width:340px;}
+  .stack-img{width:64px; height:64px; border-radius:12px; overflow:hidden; background:#f0ede6; border:3px solid #fff; box-shadow:0 2px 8px rgba(0,0,0,.1); flex:none; cursor:zoom-in;}
+  .stack-img img{width:100%; height:100%; object-fit:cover; display:block;}
+  .stack-img .ph{width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:26px; color:#c9c3b6;}
+  .stack-meta{min-width:0;}
+  .stack-cat{display:inline-block; background:var(--accent); color:#fff; font-size:11px; border-radius:999px; padding:1px 10px; margin-bottom:3px;}
+  .stack-name{font-size:14px; font-weight:600; display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+
+  /* 视图B 假人穿搭 */
+  .dummy-wrap{position:relative; width:210px; margin:10px auto 6px; aspect-ratio:200/320;}
+  .dummy-body{position:absolute; inset:0; width:100%; height:100%;}
+  .dummy-slot{position:absolute; overflow:hidden; background:#fff; border:2.5px solid #fff; box-shadow:0 2px 10px rgba(0,0,0,.18); cursor:zoom-in; display:flex; align-items:center; justify-content:center;}
+  .dummy-slot img{width:100%; height:100%; object-fit:cover; display:block;}
+  .dummy-slot .ph{width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:30px; color:#c9c3b6; background:#f0ede6;}
+  .dummy-hat{top:-4%; left:50%; transform:translateX(-50%); width:34%; aspect-ratio:1; border-radius:50%;}
+  .dummy-top{top:15%; left:50%; transform:translateX(-50%); width:46%; aspect-ratio:1; border-radius:50%; z-index:2;}
+  .dummy-outer{top:12%; left:50%; transform:translateX(-50%); width:54%; aspect-ratio:1; border-radius:22%; z-index:3; opacity:.96;}
+  .dummy-bottom{top:46%; left:50%; transform:translateX(-50%); width:44%; aspect-ratio:1.15; border-radius:46%; z-index:1;}
+  .dummy-list{display:flex; flex-wrap:wrap; justify-content:center; gap:6px; margin:8px 0 2px;}
+  .dummy-tag{font-size:12px; background:#f2efe8; border:1px solid var(--line); border-radius:999px; padding:2px 10px; color:var(--text);}
+
+  /* 图片放大 */
+  .lightbox{position:fixed; inset:0; background:rgba(0,0,0,.72); display:none; align-items:center; justify-content:center; z-index:200; cursor:zoom-out;}
+  .lightbox.show{display:flex;}
+  .lightbox img{max-width:86vw; max-height:84vh; border-radius:10px; box-shadow:0 8px 30px rgba(0,0,0,.4); background:#fff;}
+
+  /* 卡片墙 */
+  .section{margin-bottom:20px;}
+  .section-title{font-size:17px; font-weight:700; margin:18px 0 10px; display:flex; align-items:center; gap:8px;}
+  .section-title .cnt{font-size:12px; color:var(--sub); font-weight:400;}
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px;}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:12px; overflow:hidden; cursor:pointer; transition:transform .12s, box-shadow .12s;}
+  .card:hover{transform:translateY(-3px); box-shadow:0 6px 18px rgba(0,0,0,.08);}
+  .card img{width:100%; height:140px; object-fit:cover; background:#f0ede6; display:block;}
+  .card.noimg{height:140px; background:#f0ede6; display:flex; align-items:center; justify-content:center; color:#bbb; font-size:28px;}
+  .card .info{padding:8px 10px 10px;}
+  .card .name{font-size:13px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .card .color{font-size:12px; color:var(--sub); margin-top:2px;}
+  .card .tags{margin-top:6px; display:flex; flex-wrap:wrap; gap:4px;}
+  .tag{font-size:11px; padding:1px 8px; border-radius:999px; background:#f2efe8; color:var(--text);}
+  .tag.s-春{background:#e5f0df; color:#4a7d3a;}
+  .tag.s-夏{background:#fdf0d5; color:#a86f14;}
+  .tag.s-秋{background:#f7e3da; color:#a34f2c;}
+  .tag.s-冬{background:#e1e9f2; color:#3e6185;}
+
+  /* 表单 */
+  .form-wrap{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px; margin-top:24px;}
+  .form-wrap h2{font-size:16px; margin-bottom:12px;}
+  .form-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:10px;}
+  .form-grid label{display:block; font-size:12px; color:var(--sub); margin-bottom:4px;}
+  .form-grid input,.form-grid select,.form-grid textarea{width:100%; border:1px solid var(--line); border-radius:8px; padding:8px 10px; font-size:13px; font-family:inherit; background:#fff;}
+  .form-grid textarea{grid-column:1/-1; resize:vertical; min-height:52px;}
+  .form-actions{margin-top:12px; display:flex; gap:10px; align-items:center;}
+  .toast{position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:#333; color:#fff; padding:10px 22px; border-radius:999px; font-size:13px; opacity:0; transition:.25s; pointer-events:none; z-index:99;}
+  .toast.show{opacity:1;}
+  .empty{text-align:center; color:var(--sub); padding:40px 0; font-size:14px;}
+  @media (max-width:640px){
+    .stats{grid-template-columns:repeat(4,1fr);}
+    .grid{grid-template-columns:repeat(auto-fill,minmax(110px,1fr));}
+    .card img{height:110px;}
+    .card.noimg{height:110px;}
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>我的衣橱</h1>
+  <p id="todayLine"></p>
+</header>
+<div class="container">
+
+  <!-- 统计看板 -->
+  <div class="stats" id="stats"></div>
+
+  <!-- 穿搭推荐 -->
+  <div class="recommend">
+    <h2>今日穿搭推荐 <span class="rec-season" id="recSeasonTag">--</span></h2>
+    <div class="rec-viewbar">
+      <span class="vt">展示方式</span>
+      <button class="chip active" id="viewBtnA" onclick="setView('a')">上下堆叠</button>
+      <button class="chip" id="viewBtnB" onclick="setView('b')">假人穿搭</button>
+    </div>
+    <div class="rec-view active" id="recViewA"></div>
+    <div class="rec-view" id="recViewB"></div>
+    <div class="rec-reason" id="recReason"></div>
+    <div style="margin-top:12px;">
+      <button class="btn" onclick="refreshRecommend(true)">换一套</button>
+    </div>
+  </div>
+
+  <!-- 筛选 -->
+  <div class="filters">
+    <div class="filter-row" style="margin-bottom:8px;">
+      <span class="ft">分类</span>
+      <span class="chip active" data-cat="全部">全部</span>
+      <span class="chip" data-cat="帽子">帽子</span>
+      <span class="chip" data-cat="背心">背心</span>
+      <span class="chip" data-cat="上衣">上衣</span>
+      <span class="chip" data-cat="裤子">裤子</span>
+      <span class="chip" data-cat="裙子">裙子</span>
+      <span class="chip" data-cat="卫衣">卫衣</span>
+      <span class="chip" data-cat="外套">外套</span>
+      <span class="chip" data-cat="大衣">大衣</span>
+    </div>
+    <div class="filter-row">
+      <span class="ft">季节</span>
+      <span class="chip active" data-season="全部">全部</span>
+      <span class="chip" data-season="春">春</span>
+      <span class="chip" data-season="夏">夏</span>
+      <span class="chip" data-season="秋">秋</span>
+      <span class="chip" data-season="冬">冬</span>
+    </div>
+    <div class="filter-row" id="brandRow" style="margin-top:8px;">
+      <span class="ft">品牌</span>
+    </div>
+    <div class="filter-row" id="yearRow" style="margin-top:8px;">
+      <span class="ft">购买年</span>
+    </div>
+  </div>
+
+  <!-- 卡片墙 -->
+  <div id="wall"></div>
+
+  <!-- 录入表单 -->
+  <div class="form-wrap">
+    <h2>录入新衣物</h2>
+    <form id="addForm" onsubmit="submitCloth(event)">
+      <div class="form-grid">
+        <div><label>名称 *</label><input name="name" required placeholder="如：白色短袖T恤"></div>
+        <div><label>类别 *</label>
+          <select name="category" required>
+            <option value="上衣">上衣</option><option value="卫衣">卫衣</option><option value="外套">外套</option>
+            <option value="大衣">大衣</option><option value="裤子">裤子</option><option value="裙子">裙子</option>
+            <option value="背心">背心</option><option value="帽子">帽子</option>
+          </select>
+        </div>
+        <div><label>颜色</label><input name="color" placeholder="如：白 / 蓝"></div>
+        <div><label>材质</label><input name="material" placeholder="如：棉 / 羊毛"></div>
+        <div><label>季节（可多选）</label>
+          <select name="seasons" multiple size="1" style="height:38px;">
+            <option value="春">春</option><option value="夏">夏</option><option value="秋">秋</option><option value="冬">冬</option>
+          </select>
+        </div>
+        <div><label>备注</label><input name="note" placeholder="可选"></div>
+        <textarea name="note2" placeholder="详细备注（可选）"></textarea>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn">保存</button>
+        <span style="font-size:12px;color:var(--sub);" id="formMsg"></span>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="lightbox" id="lightbox" onclick="closeLightbox()"><img id="lightboxImg" alt=""></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const CATEGORIES = ["帽子","背心","上衣","裤子","裙子","卫衣","外套","大衣"];
+const CAT_ICONS = {帽子:"🎩",背心:"🎽",上衣:"👕",裤子:"👖",裙子:"👗",卫衣:"🧥",外套:"🧥",大衣:"🧥"};
+let WARDROBE = [];
+let curCat = "全部";
+let curSeason = "全部";
+let curBrand = "全部";
+let curYear = "全部";
+
+function $(id){return document.getElementById(id);}
+
+function seasonOfMonth(m){
+  if(m>=3 && m<=5) return "春";
+  if(m>=6 && m<=8) return "夏";
+  if(m>=9 && m<=11) return "秋";
+  return "冬";
+}
+
+function loadStats(){
+  const total = WARDROBE.length;
+  const html = [
+    {n:total,l:"总数"},
+    {n:WARDROBE.filter(c=>c.category==="上衣"||c.category==="卫衣"||c.category==="背心").length,l:"上装"},
+    {n:WARDROBE.filter(c=>c.category==="裤子"||c.category==="裙子").length,l:"下装"},
+    {n:WARDROBE.filter(c=>c.category==="外套"||c.category==="大衣").length,l:"外套"}
+  ].map(s=>`<div class="stat"><div class="num">${s.n}</div><div class="label">${s.l}</div></div>`).join("");
+  $("stats").innerHTML = html;
+}
+
+function yearOf(c){
+  const pd = (c.purchase_date||"").toString().trim();
+  return /^\d{4}/.test(pd) ? pd.slice(0,4) : "";
+}
+
+function filteredList(){
+  return WARDROBE.filter(c=>{
+    if(curCat!=="全部" && c.category!==curCat) return false;
+    if(curSeason!=="全部" && !(c.seasons||[]).includes(curSeason)) return false;
+    if(curBrand!=="全部" && (c.brand||"").trim()!==curBrand) return false;
+    if(curYear!=="全部"){
+      const y = yearOf(c);
+      if(curYear==="未知"){ if(y) return false; }
+      else if(y!==curYear) return false;
+    }
+    return true;
+  });
+}
+
+function renderWall(){
+  const list = filteredList();
+  if(!list.length){ $("wall").innerHTML = `<div class="empty">没有符合条件的衣物</div>`; return; }
+  let html = "";
+  CATEGORIES.forEach(cat=>{
+    const items = list.filter(c=>c.category===cat);
+    if(!items.length) return;
+    html += `<div class="section"><div class="section-title">${CAT_ICONS[cat]||""} ${cat} <span class="cnt">${items.length} 件</span></div><div class="grid">`;
+    items.forEach(c=>{
+      const tags = (c.seasons||[]).map(s=>`<span class="tag s-${s}">${s}</span>`).join("");
+      const img = c.image ? `<img src="${c.image}" alt="${c.name}" loading="lazy" onerror="this.outerHTML='<div class=&quot;noimg&quot;>🧥</div>'">` : `<div class="noimg">🧥</div>`;
+      const color = c.color ? `<div class="color">${c.color}${c.brand? " · "+c.brand:""}</div>` : "";
+      html += `<div class="card" title="${c.name}${c.note? "｜"+c.note:""}">${img}<div class="info"><div class="name">${c.name}</div>${color}<div class="tags">${tags}</div></div></div>`;
+    });
+    html += `</div></div>`;
+  });
+  $("wall").innerHTML = html;
+}
+
+function getTodayRecommend(force){
+  const now = new Date();
+  const m = now.getMonth()+1;
+  const season = seasonOfMonth(m);
+  const candidates = WARDROBE.filter(c=>(c.seasons||[]).includes(season));
+  const hats = candidates.filter(c=>c.category==="帽子");
+  const tops = candidates.filter(c=>["上衣","卫衣","背心"].includes(c.category));
+  const bottoms = candidates.filter(c=>["裤子","裙子"].includes(c.category));
+  const outers = candidates.filter(c=>["外套","大衣"].includes(c.category));
+  const used = JSON.parse(localStorage.getItem("wardrobe_used")||"[]");
+
+  const pick = (arr, usedIds)=>{
+    if(!arr.length) return null;
+    const fresh = arr.filter(c=>!usedIds.includes(c.id));
+    const pool = fresh.length? fresh : arr;
+    return pool[Math.floor(Math.random()*pool.length)];
+  };
+
+  const usedNow = used.slice(-24);
+  let hat = pick(hats, usedNow);
+  let top = pick(tops, usedNow);
+  let bottom = pick(bottoms, usedNow);
+  let outer = (season!=="夏" && outers.length) ? pick(outers, usedNow) : null;
+
+  // 兜底：若某类为空则从全部季节里补
+  if(!hat) hat = hats[Math.floor(Math.random()*hats.length)];
+  if(!top) top = tops[Math.floor(Math.random()*tops.length)];
+  if(!bottom) bottom = bottoms[Math.floor(Math.random()*bottoms.length)];
+
+  const combo = [hat, top, bottom, outer].filter(Boolean);
+  const newUsed = used.concat(combo.map(c=>c.id)).slice(-60);
+  localStorage.setItem("wardrobe_used", JSON.stringify(newUsed));
+  return {season, hat, top, bottom, outer, combo};
+}
+
+function imgOrPh(item, onClick){
+  if(item && item.image){
+    const oc = onClick ? ` onclick="${onClick}"` : "";
+    return `<img src="${item.image}" alt="${item.name}" loading="lazy" onerror="this.outerHTML='<div class=&quot;ph&quot;>🧥</div>'"${oc}>`;
+  }
+  return `<div class="ph">🧥</div>`;
+}
+
+function recStackCard(type, item){
+  if(!item) return "";
+  return `<div class="stack-item">` +
+    `<div class="stack-img">${imgOrPh(item, `openLightbox('${item.image}')`)}</div>` +
+    `<div class="stack-meta"><span class="stack-cat">${type}</span><span class="stack-name">${item.name}</span></div>` +
+  `</div>`;
+}
+
+function recDummyHtml(r){
+  const svg = `<svg class="dummy-body" viewBox="0 0 200 320" xmlns="http://www.w3.org/2000/svg">` +
+    `<circle cx="100" cy="30" r="24" fill="#f0e9dd" stroke="#d8cfc0" stroke-width="2"/>` +
+    `<path d="M100 62 C128 62 146 82 146 118 L146 168 L54 168 L54 118 C54 82 72 62 100 62 Z" fill="#ece5d8" stroke="#d8cfc0" stroke-width="2"/>` +
+    `<path d="M54 94 C38 102 30 120 32 138 L50 142 C50 128 54 118 62 110 Z" fill="#ece5d8" stroke="#d8cfc0" stroke-width="2"/>` +
+    `<path d="M146 94 C162 102 170 120 168 138 L150 142 C150 128 146 118 138 110 Z" fill="#ece5d8" stroke="#d8cfc0" stroke-width="2"/>` +
+    `<path d="M74 168 L64 272 L94 272 L100 182 L106 272 L136 272 L126 168 Z" fill="#ece5d8" stroke="#d8cfc0" stroke-width="2"/>` +
+  `</svg>`;
+  const slot = (cls, type, item)=>{
+    if(!item) return "";
+    const inner = imgOrPh(item, `openLightbox('${item.image}')`);
+    return `<div class="dummy-slot ${cls}" title="${type}：${item.name}">${inner}</div>`;
+  };
+  const tagOf = (type, item)=> item ? `<span class="dummy-tag">${type}·${item.name}</span>` : "";
+  const tags = tagOf("帽子",r.hat)+tagOf("上装",r.top)+tagOf("下装",r.bottom)+tagOf("外套",r.outer);
+  return `<div class="dummy-wrap">${svg}${slot("dummy-hat","帽子",r.hat)}${slot("dummy-top","上装",r.top)}${slot("dummy-bottom","下装",r.bottom)}${slot("dummy-outer","外套",r.outer)}</div>` +
+    `<div class="dummy-list">${tags}</div>`;
+}
+
+function renderRecommend(force){
+  const r = getTodayRecommend(force);
+  const seasonColor = {春:"var(--spring)",夏:"var(--summer)",秋:"var(--autumn)",冬:"var(--winter)"};
+  const tag = $("recSeasonTag");
+  tag.textContent = `${r.season}季`;
+  tag.style.background = seasonColor[r.season];
+
+  const items = [["帽子",r.hat],["上装",r.top],["下装",r.bottom],["外套",r.outer]];
+  const hasAny = items.some(([,it])=>it);
+  // 视图A：上下堆叠
+  const htmlA = hasAny
+    ? `<div class="stack">${items.map(([t,it])=>recStackCard(t,it)).join("")}</div>`
+    : `<div class="rec-item"><div class="rn">暂无可用衣物</div></div>`;
+  // 视图B：假人穿搭
+  const htmlB = hasAny ? recDummyHtml(r) : `<div class="rec-item"><div class="rn">暂无可用衣物</div></div>`;
+  $("recViewA").innerHTML = htmlA;
+  $("recViewB").innerHTML = htmlB;
+
+  const now = new Date();
+  const reasonParts = [];
+  reasonParts.push(`当前${now.getMonth()+1}月为${r.season}季`);
+  if(r.hat) reasonParts.push(`帽子选${r.hat.name}${r.hat.color? "（"+r.hat.color+"）":""}`);
+  if(r.top) reasonParts.push(`上装选择${r.top.name}（${r.top.color||"任意色"}）`);
+  if(r.bottom) reasonParts.push(`下装搭配${r.bottom.name}`);
+  if(r.outer) reasonParts.push(`气温波动大，叠穿${r.outer.name}更稳妥`);
+  else if(r.season==="夏") reasonParts.push(`夏季炎热，无需外套`);
+  reasonParts.push(`已为你避开最近推荐过的组合`);
+  $("recReason").textContent = reasonParts.join("，") + "。";
+}
+
+function setView(v){
+  const isA = v==="a";
+  $("recViewA").classList.toggle("active", isA);
+  $("recViewB").classList.toggle("active", !isA);
+  $("viewBtnA").classList.toggle("active", isA);
+  $("viewBtnB").classList.toggle("active", !isA);
+}
+
+function openLightbox(src){
+  if(!src) return;
+  $("lightboxImg").src = src;
+  $("lightbox").classList.add("show");
+}
+function closeLightbox(){
+  $("lightbox").classList.remove("show");
+}
+
+function refreshRecommend(force){
+  if(!WARDROBE.length) return;
+  renderRecommend(!!force);
+}
+
+function escAttr(s){
+  return String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+function buildDynamicFilters(){
+  const brandRow = $("brandRow");
+  const brands = [...new Set(WARDROBE.map(c=>(c.brand||"").trim()).filter(Boolean))]
+    .sort((a,b)=>a.localeCompare(b,"zh"));
+  brandRow.innerHTML = `<span class="ft">品牌</span>` +
+    ["全部", ...brands].map(b=>
+      `<span class="chip${b==="全部"?" active":""}" data-brand="${escAttr(b)}">${escAttr(b)}</span>`).join("");
+
+  const yearRow = $("yearRow");
+  const years = [...new Set(WARDROBE.map(c=>yearOf(c)).filter(Boolean))]
+    .sort((a,b)=>Number(b)-Number(a));
+  yearRow.innerHTML = `<span class="ft">购买年</span>` +
+    ["全部", ...years, "未知"].map(y=>
+      `<span class="chip${y==="全部"?" active":""}" data-year="${escAttr(y)}">${escAttr(y)}</span>`).join("");
+
+  brandRow.querySelectorAll(".chip[data-brand]").forEach(ch=>{
+    ch.onclick = ()=>{
+      brandRow.querySelectorAll(".chip[data-brand]").forEach(x=>x.classList.remove("active"));
+      ch.classList.add("active");
+      curBrand = ch.dataset.brand;
+      renderWall();
+    };
+  });
+  yearRow.querySelectorAll(".chip[data-year]").forEach(ch=>{
+    ch.onclick = ()=>{
+      yearRow.querySelectorAll(".chip[data-year]").forEach(x=>x.classList.remove("active"));
+      ch.classList.add("active");
+      curYear = ch.dataset.year;
+      renderWall();
+    };
+  });
+}
+
+function initFilters(){
+  document.querySelectorAll(".chip[data-cat]").forEach(ch=>{
+    ch.onclick = ()=>{
+      document.querySelectorAll(".chip[data-cat]").forEach(x=>x.classList.remove("active"));
+      ch.classList.add("active");
+      curCat = ch.dataset.cat;
+      renderWall();
+    };
+  });
+  document.querySelectorAll(".chip[data-season]").forEach(ch=>{
+    ch.onclick = ()=>{
+      document.querySelectorAll(".chip[data-season]").forEach(x=>x.classList.remove("active"));
+      ch.classList.add("active");
+      curSeason = ch.dataset.season;
+      renderWall();
+    };
+  });
+}
+
+async function submitCloth(e){
+  e.preventDefault();
+  const f = e.target;
+  const name = f.name.value.trim();
+  const category = f.category.value;
+  const seasons = Array.from(f.seasons.selectedOptions).map(o=>o.value);
+  const note = (f.note.value.trim()+" "+(f.note2.value.trim()||"")).trim();
+  const payload = {
+    name, category,
+    color: f.color.value.trim(),
+    material: f.material.value.trim(),
+    seasons: seasons.length? seasons : ["春","秋"],
+    note
+  };
+  try{
+    const res = await fetch("/api/clothes", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body: JSON.stringify(payload)
+    });
+    if(!res.ok) throw new Error("HTTP "+res.status);
+    const data = await res.json();
+    if(!data.success) throw new Error(data.message||"保存失败");
+    f.reset();
+    showToast("已保存："+name);
+    await loadData();
+    renderWall(); renderRecommend(false); loadStats();
+  }catch(err){
+    showToast("保存失败："+err.message);
+  }
+}
+
+function showToast(msg){
+  const t = $("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"), 2200);
+}
+
+async function loadData(){
+  try{
+    const res = await fetch("wardrobe.json", {cache:"no-store"});
+    if(!res.ok) throw new Error("HTTP "+res.status);
+    WARDROBE = await res.json();
+    buildDynamicFilters();
+    $("todayLine").textContent = `共 ${WARDROBE.length} 件衣物 · 数据加载正常 · 更新于 ${new Date().toLocaleDateString("zh-CN")}`;
+    loadStats(); renderWall(); renderRecommend(false);
+  }catch(err){
+    $("todayLine").textContent = "数据加载失败："+err.message;
+    $("wall").innerHTML = `<div class="empty">无法读取 wardrobe.json，请确认已在衣橱目录启动服务</div>`;
+  }
+}
+
+initFilters();
+loadData();
+</script>
+</body>
+</html>
