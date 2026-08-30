@@ -6,13 +6,13 @@
 <title>我的衣橱</title>
 <style>
   :root{
-    --bg:#f6f4ef; --card:#ffffff; --text:#2b2b2b; --sub:#8a8578;
-    --line:#e8e4da; --accent:#b08968; --accent-dark:#8f6b4e;
-    --spring:#7fb069; --summer:#e9a23b; --autumn:#c96f4a; --winter:#5b7f9e;
+    --bg:#f4f7fc; --card:#ffffff; --text:#26303e; --sub:#7d8a9c;
+    --line:#dce5f1; --accent:#3b82f6; --accent-dark:#1e56c8;
+    --spring:#7fb069; --summer:#e9a23b; --autumn:#c96f4a; --winter:#4a7fb8;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; background:var(--bg); color:var(--text); padding-bottom:60px;}
-  header{background:linear-gradient(135deg,#b08968,#8f6b4e); color:#fff; padding:26px 20px 18px; text-align:center;}
+  header{background:linear-gradient(135deg,#4a90f0,#1e56c8); color:#fff; padding:26px 20px 18px; text-align:center;}
   header h1{font-size:24px; letter-spacing:2px;}
   header p{font-size:13px; opacity:.85; margin-top:6px;}
   .container{max-width:1180px; margin:0 auto; padding:16px;}
@@ -27,7 +27,7 @@
   .filters{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:12px; margin-bottom:16px;}
   .filter-row{display:flex; flex-wrap:wrap; gap:8px; align-items:center;}
   .filter-row .ft{font-size:13px; color:var(--sub); margin-right:4px;}
-  .chip{border:1px solid var(--line); background:#faf8f4; color:var(--text); border-radius:999px; padding:5px 14px; font-size:13px; cursor:pointer; transition:.15s;}
+  .chip{border:1px solid var(--line); background:#f3f7fd; color:var(--text); border-radius:999px; padding:5px 14px; font-size:13px; cursor:pointer; transition:.15s;}
   .chip.active{background:var(--accent); color:#fff; border-color:var(--accent);}
   .chip:hover{border-color:var(--accent);}
 
@@ -36,7 +36,7 @@
   .recommend h2{font-size:16px; margin-bottom:10px;}
   .rec-season{display:inline-block; padding:2px 12px; border-radius:999px; color:#fff; font-size:12px; margin-left:8px; vertical-align:middle;}
   .rec-items{display:flex; flex-wrap:wrap; gap:12px; margin:12px 0;}
-  .rec-item{background:#faf8f4; border:1px solid var(--line); border-radius:10px; padding:10px 14px; min-width:130px; text-align:center;}
+  .rec-item{background:#f3f7fd; border:1px solid var(--line); border-radius:10px; padding:10px 14px; min-width:130px; text-align:center;}
   .rec-item .rt{font-size:12px; color:var(--sub);}
   .rec-item .rn{font-size:14px; font-weight:600; margin-top:4px;}
   .rec-reason{font-size:13px; color:var(--sub); line-height:1.6;}
@@ -52,10 +52,10 @@
 
   /* 视图A 上下堆叠 */
   .stack{display:flex; flex-direction:column; align-items:center; gap:10px; margin:14px 0;}
-  .stack-item{display:flex; align-items:center; gap:12px; background:#faf8f4; border:1px solid var(--line); border-radius:12px; padding:8px 14px 8px 8px; width:100%; max-width:340px;}
-  .stack-img{width:64px; height:64px; border-radius:12px; overflow:hidden; background:#f0ede6; border:3px solid #fff; box-shadow:0 2px 8px rgba(0,0,0,.1); flex:none; cursor:zoom-in;}
+  .stack-item{display:flex; align-items:center; gap:12px; background:#f3f7fd; border:1px solid var(--line); border-radius:12px; padding:8px 14px 8px 8px; width:100%; max-width:340px;}
+  .stack-img{width:64px; height:64px; border-radius:12px; overflow:hidden; background:#e9f0fa; border:3px solid #fff; box-shadow:0 2px 8px rgba(0,0,0,.1); flex:none; cursor:zoom-in;}
   .stack-img img{width:100%; height:100%; object-fit:cover; display:block;}
-  .stack-img .ph{width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:26px; color:#c9c3b6;}
+  .stack-img .ph{width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:26px; color:#a9b7cc;}
   .stack-meta{min-width:0;}
   .stack-cat{display:inline-block; background:var(--accent); color:#fff; font-size:11px; border-radius:999px; padding:1px 10px; margin-bottom:3px;}
   .stack-name{font-size:14px; font-weight:600; display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
@@ -71,7 +71,7 @@
   .dummy-outer{top:12%; left:50%; transform:translateX(-50%); width:54%; aspect-ratio:1; border-radius:22%; z-index:3; opacity:.96;}
   .dummy-bottom{top:46%; left:50%; transform:translateX(-50%); width:44%; aspect-ratio:1.15; border-radius:46%; z-index:1;}
   .dummy-list{display:flex; flex-wrap:wrap; justify-content:center; gap:6px; margin:8px 0 2px;}
-  .dummy-tag{font-size:12px; background:#f2efe8; border:1px solid var(--line); border-radius:999px; padding:2px 10px; color:var(--text);}
+  .dummy-tag{font-size:12px; background:#edf3fb; border:1px solid var(--line); border-radius:999px; padding:2px 10px; color:var(--text);}
 
   /* 图片放大 */
   .lightbox{position:fixed; inset:0; background:rgba(0,0,0,.72); display:none; align-items:center; justify-content:center; z-index:200; cursor:zoom-out;}
@@ -85,17 +85,33 @@
   .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px;}
   .card{background:var(--card); border:1px solid var(--line); border-radius:12px; overflow:hidden; cursor:pointer; transition:transform .12s, box-shadow .12s;}
   .card:hover{transform:translateY(-3px); box-shadow:0 6px 18px rgba(0,0,0,.08);}
-  .card img{width:100%; height:140px; object-fit:cover; background:#f0ede6; display:block;}
-  .card.noimg{height:140px; background:#f0ede6; display:flex; align-items:center; justify-content:center; color:#bbb; font-size:28px;}
+  .card img{width:100%; height:140px; object-fit:cover; background:#e9f0fa; display:block;}
+  .card.noimg{height:140px; background:#e9f0fa; display:flex; align-items:center; justify-content:center; color:#a9b7cc; font-size:28px;}
   .card .info{padding:8px 10px 10px;}
   .card .name{font-size:13px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
   .card .color{font-size:12px; color:var(--sub); margin-top:2px;}
   .card .tags{margin-top:6px; display:flex; flex-wrap:wrap; gap:4px;}
-  .tag{font-size:11px; padding:1px 8px; border-radius:999px; background:#f2efe8; color:var(--text);}
+  .tag{font-size:11px; padding:1px 8px; border-radius:999px; background:#edf3fb; color:var(--text);}
   .tag.s-春{background:#e5f0df; color:#4a7d3a;}
   .tag.s-夏{background:#fdf0d5; color:#a86f14;}
   .tag.s-秋{background:#f7e3da; color:#a34f2c;}
   .tag.s-冬{background:#e1e9f2; color:#3e6185;}
+
+  /* 穿搭样板 */
+  .outfit-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:16px;}
+  .outfit-card{background:var(--card); border:1px solid var(--line); border-radius:14px; overflow:hidden; transition:transform .12s, box-shadow .12s;}
+  .outfit-card:hover{transform:translateY(-3px); box-shadow:0 6px 18px rgba(0,0,0,.08);}
+  .outfit-imgwrap{position:relative; aspect-ratio:3/4; cursor:zoom-in; background:#e9f0fa; overflow:hidden;}
+  .outfit-imgwrap img{width:100%; height:100%; object-fit:cover; display:block;}
+  .outfit-badge{position:absolute; top:10px; left:10px; background:rgba(0,0,0,.55); color:#fff; font-size:12px; border-radius:999px; padding:3px 12px;}
+  .outfit-info{padding:12px 14px 14px;}
+  .outfit-title{font-size:15px; font-weight:700; line-height:1.4;}
+  .outfit-tags{margin-top:6px; display:flex; flex-wrap:wrap; gap:5px;}
+  .outfit-tag{font-size:11px; padding:2px 10px; border-radius:999px; background:#edf3fb; color:var(--text);}
+  .outfit-tag.cat-慧穿搭{background:#f7e3da; color:#a34f2c;}
+  .outfit-tag.cat-种草图{background:#e5f0df; color:#4a7d3a;}
+  .outfit-tag.outfit-season{background:#fdf0d5; color:#a86f14;}
+  .outfit-note{font-size:12px; color:var(--sub); margin-top:8px; line-height:1.55;}
 
   /* 表单 */
   .form-wrap{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px; margin-top:24px;}
@@ -144,17 +160,8 @@
 
   <!-- 筛选 -->
   <div class="filters">
-    <div class="filter-row" style="margin-bottom:8px;">
+    <div class="filter-row" id="catRow" style="margin-bottom:8px;">
       <span class="ft">分类</span>
-      <span class="chip active" data-cat="全部">全部</span>
-      <span class="chip" data-cat="帽子">帽子</span>
-      <span class="chip" data-cat="背心">背心</span>
-      <span class="chip" data-cat="上衣">上衣</span>
-      <span class="chip" data-cat="裤子">裤子</span>
-      <span class="chip" data-cat="裙子">裙子</span>
-      <span class="chip" data-cat="卫衣">卫衣</span>
-      <span class="chip" data-cat="外套">外套</span>
-      <span class="chip" data-cat="大衣">大衣</span>
     </div>
     <div class="filter-row">
       <span class="ft">季节</span>
@@ -174,6 +181,20 @@
 
   <!-- 卡片墙 -->
   <div id="wall"></div>
+
+  <!-- 穿搭样板 -->
+  <div class="section" id="outfitSection">
+    <div class="section-title">穿搭样板 <span class="cnt" id="outfitCount"></span></div>
+    <div class="filters">
+      <div class="filter-row">
+        <span class="ft">类别</span>
+        <span class="chip active" data-outcat="全部">全部</span>
+        <span class="chip" data-outcat="慧穿搭">慧穿搭</span>
+        <span class="chip" data-outcat="种草图">种草图</span>
+      </div>
+    </div>
+    <div id="outfitWall"></div>
+  </div>
 
   <!-- 录入表单 -->
   <div class="form-wrap">
@@ -209,13 +230,16 @@
 <div class="toast" id="toast"></div>
 
 <script>
-const CATEGORIES = ["帽子","背心","上衣","裤子","裙子","连衣裙","卫衣","外套","大衣"];
+let CATEGORIES = ["帽子","背心","上衣","裤子","裙子","连衣裙","卫衣","外套","大衣"];
+const BASE_CAT_ORDER = ["帽子","背心","上衣","裤子","裙子","连衣裙","卫衣","外套","大衣"];
 const CAT_ICONS = {帽子:"🎩",背心:"🎽",上衣:"👕",裤子:"👖",裙子:"👗",连衣裙:"👗",卫衣:"🧥",外套:"🧥",大衣:"🧥"};
 let WARDROBE = [];
+let OUTFITS = [];
 let curCat = "全部";
-let curSeason = "全部";
+let curSeasons = new Set();
 let curBrand = "全部";
 let curYear = "全部";
+let curOutCat = "全部";
 
 function $(id){return document.getElementById(id);}
 
@@ -245,7 +269,7 @@ function yearOf(c){
 function filteredList(){
   return WARDROBE.filter(c=>{
     if(curCat!=="全部" && c.category!==curCat) return false;
-    if(curSeason!=="全部" && !(c.seasons||[]).includes(curSeason)) return false;
+    if(curSeasons.size && !(c.seasons||[]).some(s=>curSeasons.has(s))) return false;
     if(curBrand!=="全部" && (c.brand||"").trim()!==curBrand) return false;
     if(curYear!=="全部"){
       const y = yearOf(c);
@@ -401,7 +425,28 @@ function escAttr(s){
   return String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 }
 
+function buildCategoryFilters(){
+  const catRow = $("catRow");
+  if(!catRow) return;
+  const set = new Set(WARDROBE.map(c=>(c.category||"").trim()).filter(Boolean));
+  const extra = [...set].filter(c=>!BASE_CAT_ORDER.includes(c)).sort((a,b)=>a.localeCompare(b,"zh"));
+  const cats = [...BASE_CAT_ORDER.filter(c=>set.has(c)), ...extra];
+  CATEGORIES = cats;
+  catRow.innerHTML = `<span class="ft">分类</span>` +
+    ["全部", ...cats].map(c=>
+      `<span class="chip${c==="全部"?" active":""}" data-cat="${escAttr(c)}">${escAttr(c)}</span>`).join("");
+  catRow.querySelectorAll(".chip[data-cat]").forEach(ch=>{
+    ch.onclick = ()=>{
+      catRow.querySelectorAll(".chip[data-cat]").forEach(x=>x.classList.remove("active"));
+      ch.classList.add("active");
+      curCat = ch.dataset.cat;
+      renderWall();
+    };
+  });
+}
+
 function buildDynamicFilters(){
+  buildCategoryFilters();
   const brandRow = $("brandRow");
   const brands = [...new Set(WARDROBE.map(c=>(c.brand||"").trim()).filter(Boolean))]
     .sort((a,b)=>a.localeCompare(b,"zh"));
@@ -435,22 +480,72 @@ function buildDynamicFilters(){
 }
 
 function initFilters(){
-  document.querySelectorAll(".chip[data-cat]").forEach(ch=>{
-    ch.onclick = ()=>{
-      document.querySelectorAll(".chip[data-cat]").forEach(x=>x.classList.remove("active"));
-      ch.classList.add("active");
-      curCat = ch.dataset.cat;
-      renderWall();
-    };
-  });
   document.querySelectorAll(".chip[data-season]").forEach(ch=>{
     ch.onclick = ()=>{
-      document.querySelectorAll(".chip[data-season]").forEach(x=>x.classList.remove("active"));
-      ch.classList.add("active");
-      curSeason = ch.dataset.season;
+      if(ch.dataset.season==="全部"){
+        curSeasons.clear();
+        document.querySelectorAll(".chip[data-season]").forEach(x=>x.classList.toggle("active", x===ch));
+      }else{
+        const s = ch.dataset.season;
+        if(curSeasons.has(s)) curSeasons.delete(s); else curSeasons.add(s);
+        ch.classList.toggle("active");
+        const allChip = document.querySelector('.chip[data-season="全部"]');
+        if(allChip) allChip.classList.toggle("active", curSeasons.size===0);
+      }
       renderWall();
     };
   });
+}
+
+function renderOutfits(){
+  const list = OUTFITS.filter(o=> curOutCat==="全部" || o.category===curOutCat);
+  $("outfitCount").textContent = `${OUTFITS.length} 套`;
+  if(!list.length){
+    $("outfitWall").innerHTML = `<div class="empty">${curOutCat==="全部" ? "暂无穿搭样板，可在 Excel「穿搭样板」表中添加" : "该类别下暂无穿搭样板"}</div>`;
+    return;
+  }
+  let html = `<div class="outfit-grid">`;
+  list.forEach(o=>{
+    const tags = [];
+    if(o.category) tags.push(`<span class="outfit-tag cat-${escAttr(o.category)}">${escAttr(o.category)}</span>`);
+    if(o.season) tags.push(`<span class="outfit-tag outfit-season">${escAttr(o.season)}</span>`);
+    if(o.scene) tags.push(`<span class="outfit-tag">${escAttr(o.scene)}</span>`);
+    html += `<div class="outfit-card">` +
+      `<div class="outfit-imgwrap" title="点击放大" onclick="openLightbox('${escAttr(o.image)}')">` +
+        `<img src="${escAttr(o.image)}" alt="${escAttr(o.title)}" loading="lazy" onerror="this.style.display='none'">` +
+        `<span class="outfit-badge">${escAttr(o.category)}</span>` +
+      `</div>` +
+      `<div class="outfit-info">` +
+        `<div class="outfit-title">${escAttr(o.title)}</div>` +
+        `<div class="outfit-tags">${tags.join("")}</div>` +
+        (o.note? `<div class="outfit-note">${escAttr(o.note)}</div>`:"") +
+      `</div>` +
+    `</div>`;
+  });
+  html += `</div>`;
+  $("outfitWall").innerHTML = html;
+}
+
+function initOutfitFilters(){
+  document.querySelectorAll(".chip[data-outcat]").forEach(ch=>{
+    ch.onclick = ()=>{
+      document.querySelectorAll(".chip[data-outcat]").forEach(x=>x.classList.remove("active"));
+      ch.classList.add("active");
+      curOutCat = ch.dataset.outcat;
+      renderOutfits();
+    };
+  });
+}
+
+async function loadOutfits(){
+  try{
+    const res = await fetch("outfits.json", {cache:"no-store"});
+    if(!res.ok) throw new Error("HTTP "+res.status);
+    OUTFITS = await res.json();
+  }catch(err){
+    OUTFITS = [];
+  }
+  renderOutfits();
 }
 
 async function submitCloth(e){
@@ -507,7 +602,9 @@ async function loadData(){
 }
 
 initFilters();
+initOutfitFilters();
 loadData();
+loadOutfits();
 </script>
 </body>
 </html>

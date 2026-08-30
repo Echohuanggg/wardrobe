@@ -25,7 +25,7 @@
     "category": "帽子",
     "color": "卡其",
     "style": "圆顶草帽",
-    "brand": "19",
+    "brand": "",
     "material": "草绳",
     "seasons": [
       "夏"
@@ -62,7 +62,7 @@
     "category": "帽子",
     "color": "橙",
     "style": "针织帽",
-    "brand": "19",
+    "brand": "",
     "material": "毛线",
     "seasons": [
       "秋",
@@ -80,7 +80,7 @@
     "category": "背心",
     "color": "红",
     "style": "针织马甲",
-    "brand": "19",
+    "brand": "",
     "material": "毛线",
     "seasons": [
       "秋",
@@ -98,7 +98,7 @@
     "category": "背心",
     "color": "灰",
     "style": "针织马甲",
-    "brand": "19",
+    "brand": "",
     "material": "毛线",
     "seasons": [
       "秋",
@@ -116,7 +116,7 @@
     "category": "背心",
     "color": "黑",
     "style": "针织马甲",
-    "brand": "19",
+    "brand": "",
     "material": "绵",
     "seasons": [
       "秋",
@@ -134,7 +134,7 @@
     "category": "背心",
     "color": "米白",
     "style": "针织背心",
-    "brand": "19",
+    "brand": "",
     "material": "棉",
     "seasons": [
       "夏"
@@ -151,7 +151,7 @@
     "category": "背心",
     "color": "白",
     "style": "羽绒马甲",
-    "brand": "19",
+    "brand": "",
     "material": "羽绒",
     "seasons": [
       "冬"
@@ -168,7 +168,7 @@
     "category": "上衣",
     "color": "浅紫",
     "style": "短袖衬衫",
-    "brand": "19",
+    "brand": "",
     "material": "棉",
     "seasons": [
       "夏"
@@ -185,7 +185,7 @@
     "category": "上衣",
     "color": "白",
     "style": "短袖T恤",
-    "brand": "19",
+    "brand": "",
     "material": "聚酯纤维",
     "seasons": [
       "春",
@@ -205,7 +205,7 @@
     "category": "上衣",
     "color": "米",
     "style": "长袖T恤",
-    "brand": "19",
+    "brand": "",
     "material": "棉",
     "seasons": [
       "夏"
@@ -222,7 +222,7 @@
     "category": "上衣",
     "color": "红",
     "style": "短袖T恤",
-    "brand": "19",
+    "brand": "",
     "material": "棉",
     "seasons": [
       "夏"
@@ -239,7 +239,7 @@
     "category": "上衣",
     "color": "粉",
     "style": "天衣洛洛",
-    "brand": "19",
+    "brand": "",
     "material": "丝棉",
     "seasons": [
       "夏"
@@ -256,7 +256,7 @@
     "category": "上衣",
     "color": "灰",
     "style": "针织衫",
-    "brand": "19",
+    "brand": "",
     "material": "毛线",
     "seasons": [
       "秋",
@@ -309,7 +309,7 @@
     "category": "上衣",
     "color": "绿白",
     "style": "圆领短袖袖衫",
-    "brand": "19",
+    "brand": "",
     "material": "棉",
     "seasons": [
       "夏"
@@ -326,7 +326,7 @@
     "category": "上衣",
     "color": "蓝",
     "style": "立领长袖衬衫",
-    "brand": "19",
+    "brand": "",
     "material": "聚酯纤维",
     "seasons": [
       "春",
@@ -359,7 +359,7 @@
     "id": 22,
     "name": "浅绿碎花短袖衫上衣",
     "category": "上衣",
-    "color": "浅绿",
+    "color": "白底碎花",
     "style": "碎花短袖衫",
     "brand": "新加坡",
     "material": "棉",
@@ -378,7 +378,7 @@
     "category": "上衣",
     "color": "灰",
     "style": "V领短袖衫",
-    "brand": "19",
+    "brand": "",
     "material": "棉",
     "seasons": [
       "春",
@@ -396,7 +396,7 @@
     "category": "上衣",
     "color": "米黄",
     "style": "V领短袖针织衫",
-    "brand": "19",
+    "brand": "",
     "material": "棉",
     "seasons": [
       "春",
@@ -465,7 +465,7 @@
     "category": "上衣",
     "color": "白",
     "style": "圆领短袖T恤",
-    "brand": "19",
+    "brand": "",
     "material": "棉",
     "seasons": [
       "夏"
@@ -622,7 +622,7 @@
     "category": "裤子",
     "color": "米",
     "style": "阔腿裤",
-    "brand": "19",
+    "brand": "",
     "material": "棉",
     "seasons": [
       "春",
@@ -642,7 +642,7 @@
     "category": "裤子",
     "color": "黑",
     "style": "休闲裤",
-    "brand": "19",
+    "brand": "",
     "material": "棉",
     "seasons": [
       "夏"
@@ -659,7 +659,7 @@
     "category": "裤子",
     "color": "棕",
     "style": "休闲裤",
-    "brand": "19",
+    "brand": "",
     "material": "毛",
     "seasons": [
       "冬"
@@ -676,7 +676,7 @@
     "category": "裤子",
     "color": "黑",
     "style": "休闲裤",
-    "brand": "19",
+    "brand": "",
     "material": "棉",
     "seasons": [
       "夏"
@@ -686,23 +686,6 @@
     "note": "全身照；宽松街头风",
     "created_at": "2026-08-23",
     "image": "thumbnails/040.png"
-  },
-  {
-    "id": 41,
-    "name": "米阔腿裤",
-    "category": "裤子",
-    "color": "米",
-    "style": "阔腿裤",
-    "brand": "19",
-    "material": "聚酯纤维",
-    "seasons": [
-      "夏"
-    ],
-    "occasion": "",
-    "purchase_date": "202601",
-    "note": "全身照；纯色",
-    "created_at": "2026-08-23",
-    "image": "thumbnails/041.png"
   },
   {
     "id": 42,
@@ -729,7 +712,7 @@
     "category": "裤子",
     "color": "黑",
     "style": "束脚卫裤",
-    "brand": "19",
+    "brand": "",
     "material": "毛",
     "seasons": [
       "冬"
@@ -746,7 +729,7 @@
     "category": "裤子",
     "color": "灰",
     "style": "束脚卫裤",
-    "brand": "19",
+    "brand": "",
     "material": "棉",
     "seasons": [
       "冬"
@@ -763,7 +746,7 @@
     "category": "裤子",
     "color": "深咖",
     "style": "工装裤",
-    "brand": "19",
+    "brand": "",
     "material": "棉",
     "seasons": [
       "春",
@@ -782,7 +765,7 @@
     "category": "裤子",
     "color": "藕粉",
     "style": "阔腿裤",
-    "brand": "19",
+    "brand": "",
     "material": "棉",
     "seasons": [
       "春",
@@ -801,7 +784,7 @@
     "category": "裤子",
     "color": "藏青",
     "style": "束脚卫裤",
-    "brand": "19",
+    "brand": "",
     "material": "棉",
     "seasons": [
       "春",
@@ -819,7 +802,7 @@
     "category": "裤子",
     "color": "藏青",
     "style": "束脚卫裤",
-    "brand": "19",
+    "brand": "",
     "material": "棉",
     "seasons": [
       "春",
@@ -837,7 +820,7 @@
     "category": "裤子",
     "color": "卡其",
     "style": "阔腿五分裤",
-    "brand": "19",
+    "brand": "",
     "material": "棉",
     "seasons": [
       "夏"
@@ -854,7 +837,7 @@
     "category": "裙子",
     "color": "米/深棕",
     "style": "针织开衫+半身裙",
-    "brand": "19",
+    "brand": "",
     "material": "毛",
     "seasons": [
       "冬"
@@ -871,7 +854,7 @@
     "category": "裙子",
     "color": "紫",
     "style": "棉麻抽绳半身裙",
-    "brand": "19",
+    "brand": "",
     "material": "棉麻",
     "seasons": [
       "夏"
@@ -888,7 +871,7 @@
     "category": "裙子",
     "color": "黑/灰",
     "style": "宽松抽绳伞裙",
-    "brand": "19",
+    "brand": "",
     "material": "毛",
     "seasons": [
       "冬"
@@ -905,7 +888,7 @@
     "category": "裙子",
     "color": "深灰",
     "style": "抽绳松紧腰半身裙",
-    "brand": "19",
+    "brand": "",
     "material": "羊毛",
     "seasons": [
       "冬"
@@ -919,7 +902,7 @@
   {
     "id": 54,
     "name": "蓝绿无袖印花连衣裙",
-    "category": "裙子",
+    "category": "连衣裙",
     "color": "蓝绿",
     "style": "无袖印花连衣裙",
     "brand": "新加坡",
@@ -956,7 +939,7 @@
     "category": "裙子",
     "color": "咖",
     "style": "复古格纹半身裙",
-    "brand": "19",
+    "brand": "",
     "material": "毛",
     "seasons": [
       "冬"
@@ -990,7 +973,7 @@
     "category": "裙子",
     "color": "深棕",
     "style": "直筒半身裙",
-    "brand": "19",
+    "brand": "",
     "material": "毛",
     "seasons": [
       "秋",
@@ -1008,7 +991,7 @@
     "category": "卫衣",
     "color": "藏青",
     "style": "圆领卫衣",
-    "brand": "19",
+    "brand": "",
     "material": "棉",
     "seasons": [
       "秋",
@@ -1026,7 +1009,7 @@
     "category": "卫衣",
     "color": "深蓝",
     "style": "连帽卫衣",
-    "brand": "19",
+    "brand": "",
     "material": "棉",
     "seasons": [
       "春",
@@ -1045,7 +1028,7 @@
     "category": "卫衣",
     "color": "浅灰",
     "style": "连帽卫衣",
-    "brand": "19",
+    "brand": "",
     "material": "棉",
     "seasons": [
       "春",
@@ -1064,7 +1047,7 @@
     "category": "卫衣",
     "color": "玫红",
     "style": "连帽卫衣",
-    "brand": "19",
+    "brand": "",
     "material": "棉",
     "seasons": [
       "春",
@@ -1120,7 +1103,7 @@
     "category": "卫衣",
     "color": "枣红",
     "style": "连帽卫衣",
-    "brand": "19",
+    "brand": "",
     "material": "棉",
     "seasons": [
       "春",
@@ -1138,7 +1121,7 @@
     "category": "卫衣",
     "color": "米白",
     "style": "连帽卫衣",
-    "brand": "19",
+    "brand": "",
     "material": "棉",
     "seasons": [
       "春",
@@ -1176,7 +1159,7 @@
     "category": "卫衣",
     "color": "灰白",
     "style": "圆领卫衣",
-    "brand": "19",
+    "brand": "",
     "material": "棉",
     "seasons": [
       "春",
@@ -1195,7 +1178,7 @@
     "category": "卫衣",
     "color": "卡其",
     "style": "摇粒绒半拉链卫衣",
-    "brand": "19",
+    "brand": "",
     "material": "毛",
     "seasons": [
       "秋",
@@ -1231,7 +1214,7 @@
     "category": "外套",
     "color": "米",
     "style": "连帽拼接羽绒服",
-    "brand": "Canada Goose",
+    "brand": "鸭鸭",
     "material": "羽绒",
     "seasons": [
       "冬"
@@ -1248,7 +1231,7 @@
     "category": "外套",
     "color": "黑",
     "style": "连帽菱格羽绒服",
-    "brand": "19",
+    "brand": "",
     "material": "羽绒",
     "seasons": [
       "冬"
@@ -1265,7 +1248,7 @@
     "category": "外套",
     "color": "紫",
     "style": "连帽菱格羽绒服",
-    "brand": "19",
+    "brand": "",
     "material": "羽绒",
     "seasons": [
       "冬"
@@ -1282,7 +1265,7 @@
     "category": "外套",
     "color": "深棕",
     "style": "连帽羽绒服",
-    "brand": "19",
+    "brand": "",
     "material": "羽绒",
     "seasons": [
       "冬"
@@ -1299,7 +1282,7 @@
     "category": "外套",
     "color": "深棕",
     "style": "拼接仿羊羔毛外套",
-    "brand": "19",
+    "brand": "",
     "material": "羽绒",
     "seasons": [
       "春",
@@ -1318,7 +1301,7 @@
     "category": "外套",
     "color": "黑",
     "style": "短款皮衣",
-    "brand": "19",
+    "brand": "",
     "material": "皮",
     "seasons": [
       "春",
@@ -1511,7 +1494,7 @@
     "category": "外套",
     "color": "黑",
     "style": "冲锋衣",
-    "brand": "19",
+    "brand": "",
     "material": "棉",
     "seasons": [
       "春",
@@ -1530,7 +1513,7 @@
     "category": "外套",
     "color": "薄荷绿",
     "style": "防晒衣",
-    "brand": "19",
+    "brand": "",
     "material": "棉",
     "seasons": [
       "春",
@@ -1549,7 +1532,7 @@
     "category": "大衣",
     "color": "多色",
     "style": "电商商品截图(4件单品)",
-    "brand": "19",
+    "brand": "",
     "material": "棉",
     "seasons": [
       "春",
@@ -1673,7 +1656,7 @@
     "category": "帽子",
     "color": "米黄",
     "style": "防晒空顶帽",
-    "brand": "MOISTURE",
+    "brand": "",
     "material": "编织布",
     "seasons": [
       "夏"
@@ -1690,7 +1673,7 @@
     "category": "帽子",
     "color": "军绿",
     "style": "水洗棒球帽",
-    "brand": "MOONOOD",
+    "brand": "西町村屋",
     "material": "棉",
     "seasons": [
       "春",
@@ -1710,7 +1693,7 @@
     "category": "帽子",
     "color": "灰黑",
     "style": "水洗牛仔棒球帽",
-    "brand": "19",
+    "brand": "aimeewq小怪兽",
     "material": "棉",
     "seasons": [
       "春",
@@ -1730,7 +1713,7 @@
     "category": "帽子",
     "color": "米白",
     "style": "棒球帽",
-    "brand": "19",
+    "brand": "",
     "material": "棉",
     "seasons": [
       "春",
@@ -1767,7 +1750,7 @@
     "category": "上衣",
     "color": "淡紫色",
     "style": "圆领短袖T恤",
-    "brand": "19",
+    "brand": "李宁",
     "material": "棉",
     "seasons": [
       "夏"
@@ -1802,7 +1785,7 @@
     "category": "上衣",
     "color": "浅粉色",
     "style": "圆领短袖T恤",
-    "brand": "19",
+    "brand": "",
     "material": "棉",
     "seasons": [
       "夏"
@@ -1819,7 +1802,7 @@
     "category": "连衣裙",
     "color": "蓝色",
     "style": "碎花长裙",
-    "brand": "19",
+    "brand": "",
     "material": "棉",
     "seasons": [
       "春",

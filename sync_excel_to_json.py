@@ -4,6 +4,7 @@
 用法：python sync_excel_to_json.py
 查找顺序：1) 脚本同目录下的 衣物识别清单.xlsx  2) 上级目录下的 衣物识别清单.xlsx
 """
+import html
 import json
 import os
 import re
@@ -17,6 +18,10 @@ EXCEL_NAMES = ["衣物识别清单.xlsx"]
 OUT_JSON = os.path.join(BASE_DIR, "wardrobe.json")
 THUMB_DIR = os.path.join(BASE_DIR, "thumbnails")
 BAK_JSON = os.path.join(BASE_DIR, "wardrobe.json.bak")
+OUTFITS_JSON = os.path.join(BASE_DIR, "outfits.json")
+OUTFITS_DIR = os.path.join(BASE_DIR, "outfits")
+BAK_OUTFITS = os.path.join(BASE_DIR, "outfits.json.bak")
+OUTFIT_SHEET = "穿搭样板"
 
 
 def find_excel():
@@ -42,30 +47,33 @@ def read_with_openpyxl(excel_path):
     from openpyxl import load_workbook
     wb = load_workbook(excel_path, read_only=True, data_only=True)
     ws = wb.active
-    rows = list(ws.iter_rows(values_only=True))
+    rows = list(ws.iter_rows())  # Cell 对象，保留物理行号
     wb.close()
     if not rows:
         return []
-    header = [str(h).strip() if h is not None else "" for h in rows[0]]
+    header = [str(c.value).strip() if c.value is not None else "" for c in rows[0]]
     col = {name: i for i, name in enumerate(header)}
     items = []
     for r in rows[1:]:
-        if r[0] is None:
+        if r[0].value is None:
             continue
         try:
-            rid = int(r[0])
+            rid = int(r[0].value)
         except (ValueError, TypeError):
             continue
+        vals = [c.value for c in r]
+        excel_row = r[0].row
         items.append({
             "id": rid,
-            "category": str(r[col["类别"]] or "").strip() if "类别" in col else "",
-            "color": str(r[col["颜色"]] or "").strip() if "颜色" in col else "",
-            "style": str(r[col["款式"]] or "").strip() if "款式" in col else "",
-            "brand": str(r[col["品牌"]] or "").strip() if "品牌" in col else "",
-            "material": str(r[col["材质"]] or "").strip() if "材质" in col else "",
-            "purchase_date": str(r[col["购买日期"]] or "").strip() if "购买日期" in col else "",
-            "seasons_raw": str(r[col["季节"]] or "").strip() if "季节" in col else "",
-            "note": str(r[col["备注"]] or "").strip() if "备注" in col else "",
+            "excel_row": excel_row,
+            "category": str(vals[col["类别"]] or "").strip() if "类别" in col else "",
+            "color": str(vals[col["颜色"]] or "").strip() if "颜色" in col else "",
+            "style": str(vals[col["款式"]] or "").strip() if "款式" in col else "",
+            "brand": str(vals[col["品牌"]] or "").strip() if "品牌" in col else "",
+            "material": str(vals[col["材质"]] or "").strip() if "材质" in col else "",
+            "purchase_date": str(vals[col["购买日期"]] or "").strip() if "购买日期" in col else "",
+            "seasons_raw": str(vals[col["季节"]] or "").strip() if "季节" in col else "",
+            "note": str(vals[col["备注"]] or "").strip() if "备注" in col else "",
         })
     return items
 
@@ -117,6 +125,7 @@ def read_with_zip(excel_path):
                     continue
                 items.append({
                     "id": rid,
+                    "excel_row": excel_row,
                     "category": cells.get(col.get("类别", "B"), ""),
                     "color": cells.get(col.get("颜色", "C"), ""),
                     "style": cells.get(col.get("款式", "D"), ""),
@@ -132,8 +141,248 @@ def read_with_zip(excel_path):
     return items
 
 
+def _load_shared_strings(z):
+    """读取 xlsx 共享字符串（兼容富文本与 <phoneticPr/>）"""
+    shared = []
+    if "xl/sharedStrings.xml" in z.namelist():
+        sxml = z.read("xl/sharedStrings.xml").decode("utf-8", errors="ignore")
+        for si in re.findall(r"<si>(.*?)</si>", sxml, re.S):
+            texts = re.findall(r"<t[^>]*>([^<]*)</t>", si)
+            shared.append(html.unescape("".join(texts)) if texts else "")
+    return shared
+
+
+def _parse_sheet_xml_rows(xml, shared):
+    """通用解析 sheet XML -> [(excel_row, {col: val})]"""
+    rows_data = []
+    for row_m in re.finditer(r"<row[^>]*r=\"(\d+)\"[^>]*>(.*?)</row>", xml, re.S):
+        excel_row = int(row_m.group(1))
+        cells = {}
+        for c in re.finditer(r'<c r="([A-Z]+)\d+"([^>]*)>(?:<v>([^<]*)</v>)?(?:<is><t[^>]*>([^<]*)</t></is>)?</c>', row_m.group(2)):
+            col_letter, attrs, v, inline = c.group(1), c.group(2), c.group(3), c.group(4)
+            val = ""
+            if inline is not None:
+                val = inline
+            else:
+                tm = re.search(r'\bt="([^"]+)"', attrs)
+                if tm and tm.group(1) == "s" and v is not None:
+                    val = shared[int(v)]
+                elif v is not None:
+                    val = v
+            cells[col_letter] = html.unescape(val).strip()
+        rows_data.append((excel_row, cells))
+    return rows_data
+
+
+def _norm_xl_path(target):
+    """把 rels 的 Target 规范化为以 xl/ 开头的包内路径（兼容相对/绝对/../）"""
+    t = target.replace("\\", "/").lstrip("/")
+    if t.startswith("xl/"):
+        return t
+    if t.startswith("../"):
+        return "xl/" + t.replace("../", "", 1)
+    return "xl/" + t
+
+
+def _zip_find_sheet(z, sheet_name):
+    """返回指定名称 sheet 的 xml 文件名，如 xl/worksheets/sheet2.xml"""
+    names = z.namelist()
+    if "xl/workbook.xml" not in names:
+        return None
+    wxml = z.read("xl/workbook.xml").decode("utf-8", errors="ignore")
+    sheet_rid = None
+    for m in re.finditer(r"<sheet[^>]*name=\"([^\"]+)\"[^>]*r:id=\"([^\"]+)\"[^>]*/>", wxml):
+        if m.group(1) == sheet_name:
+            sheet_rid = m.group(2)
+            break
+    if not sheet_rid:
+        return None
+    rels_path = "xl/_rels/workbook.xml.rels"
+    if rels_path not in names:
+        return None
+    rxml = z.read(rels_path).decode("utf-8", errors="ignore")
+    for rm in re.finditer(r"<Relationship[^>]*/>", rxml):
+        if f'Id="{sheet_rid}"' in rm.group(0):
+            tgt_m = re.search(r'Target="([^"]+)"', rm.group(0))
+            if tgt_m:
+                return _norm_xl_path(tgt_m.group(1))
+    return None
+
+
+def _zip_find_drawing(z, sheet_xml_name):
+    """解析 sheet xml 中的 drawing r:id -> drawing xml 文件名"""
+    names = z.namelist()
+    xml = z.read(sheet_xml_name).decode("utf-8", errors="ignore")
+    m = re.search(r"<drawing[^>]*r:id=\"([^\"]+)\"", xml)
+    if not m:
+        return None
+    rid = m.group(1)
+    rels_path = sheet_xml_name.replace("worksheets/", "worksheets/_rels/") + ".rels"
+    if rels_path not in names:
+        return None
+    rxml = z.read(rels_path).decode("utf-8", errors="ignore")
+    for rm in re.finditer(r"<Relationship[^>]*/>", rxml):
+        if f'Id="{rid}"' in rm.group(0):
+            tgt_m = re.search(r'Target="([^"]+)"', rm.group(0))
+            if tgt_m:
+                return _norm_xl_path(tgt_m.group(1))
+    return None
+
+
+def read_outfits_openpyxl(excel_path):
+    """openpyxl 路径：读取'穿搭样板' sheet 行 + 内嵌图对象"""
+    from openpyxl import load_workbook
+    wb = load_workbook(excel_path, data_only=True)
+    if OUTFIT_SHEET not in wb.sheetnames:
+        wb.close()
+        return []
+    ws = wb[OUTFIT_SHEET]
+    img_map = {}
+    for img in ws._images:
+        img_map[img.anchor._from.row + 1] = img  # 0-based row -> Excel 行号
+    items = []
+    for row in ws.iter_rows(min_row=1, max_col=7):
+        if row[0].row == 1:
+            header = [str(c.value).strip() if c.value is not None else "" for c in row]
+            col = {name: i for i, name in enumerate(header)}
+            continue
+        r0 = row[0].value
+        if r0 is None:
+            continue
+        try:
+            rid = int(r0)
+        except (ValueError, TypeError):
+            continue
+        excel_row = row[0].row
+        items.append({
+            "id": rid,
+            "category": str(row[col.get("类别", 1)].value or "").strip() if col.get("类别", 1) < 7 else "",
+            "title": str(row[col.get("标题", 2)].value or "").strip() if col.get("标题", 2) < 7 else "",
+            "season": str(row[col.get("季节", 3)].value or "").strip() if col.get("季节", 3) < 7 else "",
+            "scene": str(row[col.get("适用场景", 4)].value or "").strip() if col.get("适用场景", 4) < 7 else "",
+            "note": str(row[col.get("备注", 6)].value or "").strip() if col.get("备注", 6) < 7 else "",
+            "image_obj": img_map.get(excel_row),
+        })
+    wb.close()
+    return items
+
+
+def read_outfits_zip(excel_path):
+    """zip 降级路径：解析'穿搭样板' sheet 行 + 内嵌图 media 文件"""
+    items = []
+    with zipfile.ZipFile(excel_path) as z:
+        names = z.namelist()
+        shared = _load_shared_strings(z)
+        sheet_xml = _zip_find_sheet(z, OUTFIT_SHEET)
+        if not sheet_xml:
+            return []
+        xml = z.read(sheet_xml).decode("utf-8", errors="ignore")
+        rows_data = _parse_sheet_xml_rows(xml, shared)
+        if not rows_data:
+            return items
+        header_cells = dict(rows_data[0][1])
+        col = {}
+        for letter, name in header_cells.items():
+            col[str(name).strip()] = letter
+        img_map = {}
+        drawing_xml = _zip_find_drawing(z, sheet_xml)
+        if drawing_xml and drawing_xml in names:
+            dxml = z.read(drawing_xml).decode("utf-8", errors="ignore")
+            rel_path = drawing_xml.replace("drawings/", "drawings/_rels/") + ".rels"
+            rels = {}
+            if rel_path in names:
+                rxml = z.read(rel_path).decode("utf-8", errors="ignore")
+                for rm in re.finditer(r"<Relationship[^>]*/>", rxml):
+                    rid_m = re.search(r'Id="([^"]+)"', rm.group(0))
+                    tgt_m = re.search(r'Target="([^"]+)"', rm.group(0))
+                    if rid_m and tgt_m:
+                        rels[rid_m.group(1)] = tgt_m.group(1)
+            anchors = re.findall(r"<(?:xdr:)?(?:oneCellAnchor|twoCellAnchor)[^>]*>(.*?)</(?:xdr:)?(?:oneCellAnchor|twoCellAnchor)>", dxml, re.S)
+            for body in anchors:
+                row_m = re.search(r"<(?:xdr:)?from>.*?<(?:xdr:)?row>(\d+)</(?:xdr:)?row>", body, re.S)
+                embed_m = re.search(r'r:embed="([^"]+)"', body)
+                if not row_m or not embed_m:
+                    continue
+                excel_row = int(row_m.group(1)) + 1
+                target = rels.get(embed_m.group(1), "")
+                media_file = _norm_xl_path(target)
+                if media_file in names:
+                    img_map[excel_row] = media_file
+        for excel_row, cells in rows_data[1:]:
+            try:
+                rid = int(cells.get(col.get("编号", "A"), ""))
+            except (ValueError, TypeError):
+                continue
+            items.append({
+                "id": rid,
+                "category": cells.get(col.get("类别", "B"), ""),
+                "title": cells.get(col.get("标题", "C"), ""),
+                "season": cells.get(col.get("季节", "D"), ""),
+                "scene": cells.get(col.get("适用场景", "E"), ""),
+                "note": cells.get(col.get("备注", "G"), ""),
+                "image_media": img_map.get(excel_row, ""),
+            })
+    return items
+
+
+def sync_outfits(excel_path):
+    """同步穿搭样板：Excel '穿搭样板' sheet -> outfits/ 图片 + outfits.json，旧数据自动备份"""
+    use_zip = False
+    try:
+        from openpyxl import load_workbook  # noqa
+        outfits = read_outfits_openpyxl(excel_path)
+    except Exception:
+        use_zip = True
+        outfits = read_outfits_zip(excel_path)
+    if not outfits:
+        return 0
+    if os.path.exists(OUTFITS_JSON):
+        try:
+            with open(OUTFITS_JSON, encoding="utf-8") as f:
+                json.load(f)
+            shutil.copy2(OUTFITS_JSON, BAK_OUTFITS)
+        except Exception:
+            pass
+    os.makedirs(OUTFITS_DIR, exist_ok=True)
+    saved = 0
+    new_items = []
+    for o in outfits:
+        img_path = ""
+        if use_zip:
+            media = o.get("image_media", "")
+            if media:
+                with zipfile.ZipFile(excel_path) as z:
+                    data = z.read(media)
+                ext = os.path.splitext(media)[1] or ".jpg"
+                img_path = f"outfits/{o['id']:03d}{ext}"
+                with open(os.path.join(BASE_DIR, img_path), "wb") as f:
+                    f.write(data)
+                saved += 1
+        else:
+            img = o.get("image_obj")
+            if img is not None:
+                ext = "." + (img.format or "jpg")
+                img_path = f"outfits/{o['id']:03d}{ext}"
+                with open(os.path.join(BASE_DIR, img_path), "wb") as f:
+                    f.write(img._data())
+                saved += 1
+        new_items.append({
+            "id": o["id"],
+            "category": o.get("category", ""),
+            "title": o.get("title", ""),
+            "season": o.get("season", ""),
+            "scene": o.get("scene", ""),
+            "note": o.get("note", ""),
+            "image": img_path,
+        })
+    with open(OUTFITS_JSON, "w", encoding="utf-8") as f:
+        json.dump(new_items, f, ensure_ascii=False, indent=2)
+    print(f"[穿搭] 穿搭样板同步完成：{len(new_items)} 套，导出图片 {saved} 张")
+    return len(new_items)
+
+
 def extract_images(excel_path):
-    """从 Excel 内嵌图导出缩略图：解析 drawing1.xml 锚点 -> 编号 -> xl/media/*.png"""
+    """从 Excel 内嵌图导出缩略图：解析 drawing1.xml 锚点 -> Excel行号 -> [media文件]"""
     exported = {}
     try:
         with zipfile.ZipFile(excel_path) as z:
@@ -164,7 +413,7 @@ def extract_images(excel_path):
                 target = rels.get(rid, "")
                 media_file = target.lstrip("/").replace("../", "xl/")
                 if media_file in names:
-                    exported[excel_row] = media_file
+                    exported.setdefault(excel_row, []).append(media_file)
     except Exception as e:
         print(f"[警告] 提取内嵌图失败: {e}")
     return exported
@@ -218,8 +467,22 @@ def main():
         print(f"    旧 JSON 已备份: {BAK_JSON}")
 
     # 提取内嵌图
-    image_map = extract_images(excel_path)  # Excel行号 -> media文件
-    print(f"[3/4] Excel 内嵌缩略图 {len(image_map)} 张")
+    image_map = extract_images(excel_path)  # Excel行号 -> [media文件]
+    # 关键修复：锚点行号与编号存在偏移（如整行删除后 row=id-1），
+    # 必须先把行号映射到该行单元格里的编号，再按编号取图，禁止直接用编号查行号键。
+    row_to_id = {r["excel_row"]: r["id"] for r in rows if r.get("excel_row")}
+    # 多图行人工指定取第几张（0-based）：历史编辑残留图需视觉确认后选择
+    multi_pick = {9: 0, 37: 1, 42: 0, 71: 1}
+    image_by_id = {}
+    for excel_row, medias in image_map.items():
+        rid = row_to_id.get(excel_row)
+        if rid is None:
+            continue
+        pick = multi_pick.get(rid, 0)
+        if pick >= len(medias):
+            pick = 0
+        image_by_id[rid] = medias[pick]
+    print(f"[3/4] Excel 内嵌缩略图 {len(image_map)} 张（按编号映射 {len(image_by_id)} 条）")
 
     os.makedirs(THUMB_DIR, exist_ok=True)
     new_items = []
@@ -228,21 +491,20 @@ def main():
         rid = r["id"]
         old = old_map.get(rid, {})
         name = old.get("name") or f"{r['color']}{r['style']}".strip() or f"衣物{rid:03d}"
-        # 品牌归一化
-        brand = r["brand"]
-        if brand == "无":
+        # 品牌归一化：以 Excel 权威源为准，'无' 或误填数字 19 一律归一化为空串
+        brand = str(r["brand"] or "").strip()
+        if brand in ("无", "19"):
             brand = ""
         seasons = parse_seasons(r["seasons_raw"])
         purchase_date = parse_purchase_date(r["purchase_date"])
-        # 缩略图：优先从 Excel 内嵌图导出
+        # 缩略图：优先从 Excel 内嵌图导出（按编号取图）
         img_file = f"thumbnails/{rid:03d}.png"
-        media = image_map.get(rid)
+        media = image_by_id.get(rid)
         if media:
             try:
                 with zipfile.ZipFile(excel_path) as z:
                     data = z.read(media)
-                with open(os.path.join(BASE_DIR, img_file), "wb") as f:
-                    f.write(data)
+                _write_thumbnail(os.path.join(BASE_DIR, img_file), data)
                 exported_count += 1
             except Exception as e:
                 print(f"    [警告] 导出 #{rid} 图片失败: {e}")
@@ -253,15 +515,15 @@ def main():
         item = {
             "id": rid,
             "name": name,
-            "category": r["category"] or old.get("category", ""),
-            "color": r["color"] or old.get("color", ""),
-            "style": r["style"] or old.get("style", ""),
-            "brand": brand or old.get("brand", ""),
-            "material": r["material"] or old.get("material", ""),
-            "seasons": seasons if seasons else old.get("seasons", []),
+            "category": r["category"],
+            "color": r["color"],
+            "style": r["style"],
+            "brand": brand,
+            "material": r["material"],
+            "seasons": seasons,
             "occasion": old.get("occasion", ""),
-            "purchase_date": purchase_date if purchase_date else old.get("purchase_date", ""),
-            "note": r["note"] or old.get("note", ""),
+            "purchase_date": purchase_date,
+            "note": r["note"],
             "created_at": old.get("created_at", date.today().isoformat()),
             "image": img_file,
         }
@@ -280,7 +542,29 @@ def main():
         print(f"    [警告] 以下编号缺缩略图文件: {missing_img}")
     else:
         print("    所有缩略图文件均可访问")
+    # 穿搭样板同步（新增 worksheet 解析）
+    try:
+        sync_outfits(excel_path)
+    except Exception as e:
+        print(f"[警告] 穿搭样板同步失败: {e}")
     print("数据已就绪，可以启动页面。")
+
+
+def _write_thumbnail(path, data):
+    """把内嵌图字节写为 160x160 白底居中 PNG 缩略图；PIL 不可用时直接写原图"""
+    try:
+        from PIL import Image
+        import io
+        img = Image.open(io.BytesIO(data)).convert("RGBA")
+        img.thumbnail((160, 160), Image.LANCZOS)
+        canvas = Image.new("RGB", (160, 160), (255, 255, 255))
+        x = (160 - img.width) // 2
+        y = (160 - img.height) // 2
+        canvas.paste(img, (x, y), img)
+        canvas.save(path, "PNG")
+    except Exception:
+        with open(path, "wb") as f:
+            f.write(data)
 
 
 def _make_placeholder(path):
