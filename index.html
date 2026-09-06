@@ -124,6 +124,25 @@
   .toast{position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:#333; color:#fff; padding:10px 22px; border-radius:999px; font-size:13px; opacity:0; transition:.25s; pointer-events:none; z-index:99;}
   .toast.show{opacity:1;}
   .empty{text-align:center; color:var(--sub); padding:40px 0; font-size:14px;}
+
+  /* 天气条 */
+  .weatherbar{background:linear-gradient(135deg,#eaf1fe,#f8fbff); border:1px solid var(--line); border-radius:14px; padding:12px 16px; margin-bottom:16px; display:flex; flex-wrap:wrap; align-items:center; gap:10px 16px;}
+  .wb-info{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; min-width:0;}
+  .wb-city{font-size:15px; font-weight:700; color:var(--accent-dark);}
+  .wb-city::after{content:"·"; color:var(--line); margin-left:10px; font-weight:400;}
+  .wb-temp{font-size:22px; font-weight:800; color:var(--text); line-height:1;}
+  .wb-text{font-size:13px; color:var(--sub);}
+  .wb-time{font-size:12px; color:#a9b7cc;}
+  .wb-rain{font-size:12px; color:#9a5b00; background:#fdf0d5; border-radius:999px; padding:2px 10px; font-weight:600;}
+  .wb-ctl{margin-left:auto; display:flex; gap:6px; align-items:center; flex-wrap:wrap;}
+  .wb-ctl select,.wb-ctl input{border:1px solid var(--line); border-radius:8px; padding:5px 10px; font-size:13px; font-family:inherit; background:#fff; color:var(--text);}
+  .wb-ctl input{width:148px;}
+  .btn.small{padding:5px 12px; font-size:12px; border-radius:8px;}
+
+  /* 今日天气推荐（墙顶置顶区） */
+  .today-card-hl{border:1.5px solid var(--accent);}
+  .today-tag{display:inline-block; background:var(--accent); color:#fff; font-size:10px; line-height:1; padding:2px 6px; border-radius:4px; margin-left:6px; vertical-align:1px; font-weight:600;}
+  .today-reason{font-size:12px; color:var(--sub); line-height:1.6; background:#f3f7fd; border:1px dashed var(--line); border-radius:10px; padding:8px 12px; margin:0 0 12px;}
   @media (max-width:640px){
     .stats{grid-template-columns:repeat(4,1fr);}
     .grid{grid-template-columns:repeat(auto-fill,minmax(110px,1fr));}
@@ -138,6 +157,23 @@
   <p id="todayLine"></p>
 </header>
 <div class="container">
+
+  <!-- 天气条 -->
+  <div class="weatherbar" id="weatherBar">
+    <div class="wb-info">
+      <span class="wb-city" id="wbCity">--</span>
+      <span class="wb-temp" id="wbTemp">--</span>
+      <span class="wb-text" id="wbText">天气加载中…</span>
+      <span class="wb-rain" id="wbRain" style="display:none;"></span>
+      <span class="wb-time" id="wbTime"></span>
+    </div>
+    <div class="wb-ctl">
+      <select id="citySelect" title="常用城市"></select>
+      <input id="cityInput" list="cityList" placeholder="输入城市名查询后回车" title="输入城市名后按回车">
+      <datalist id="cityList"></datalist>
+      <button class="btn small" id="cityGoBtn" type="button">切换</button>
+    </div>
+  </div>
 
   <!-- 统计看板 -->
   <div class="stats" id="stats"></div>
@@ -178,6 +214,9 @@
       <span class="ft">购买年</span>
     </div>
   </div>
+
+  <!-- 今日天气推荐（墙顶置顶区） -->
+  <div id="todayZone"></div>
 
   <!-- 卡片墙 -->
   <div id="wall"></div>
@@ -241,6 +280,74 @@ let curBrand = "全部";
 let curYear = "全部";
 let curOutCat = "全部";
 
+/* ===== 天气功能：城市表（code=中国天气网城市代码，en=wttr.in 城市名） ===== */
+const CITY_LIST = [
+  {code:"101010100", name:"北京", en:"Beijing"},
+  {code:"101020100", name:"上海", en:"Shanghai"},
+  {code:"101030100", name:"天津", en:"Tianjin"},
+  {code:"101040100", name:"重庆", en:"Chongqing"},
+  {code:"101050101", name:"哈尔滨", en:"Harbin"},
+  {code:"101060101", name:"长春", en:"Changchun"},
+  {code:"101070101", name:"沈阳", en:"Shenyang"},
+  {code:"101070201", name:"大连", en:"Dalian"},
+  {code:"101080101", name:"呼和浩特", en:"Hohhot"},
+  {code:"101090101", name:"石家庄", en:"Shijiazhuang"},
+  {code:"101090201", name:"保定", en:"Baoding"},
+  {code:"101100101", name:"太原", en:"Taiyuan"},
+  {code:"101110101", name:"西安", en:"Xian"},
+  {code:"101120101", name:"济南", en:"Jinan"},
+  {code:"101120201", name:"青岛", en:"Qingdao"},
+  {code:"101120501", name:"烟台", en:"Yantai"},
+  {code:"101130101", name:"乌鲁木齐", en:"Urumqi"},
+  {code:"101140101", name:"拉萨", en:"Lhasa"},
+  {code:"101150101", name:"西宁", en:"Xining"},
+  {code:"101160101", name:"兰州", en:"Lanzhou"},
+  {code:"101170101", name:"银川", en:"Yinchuan"},
+  {code:"101180101", name:"郑州", en:"Zhengzhou"},
+  {code:"101180901", name:"洛阳", en:"Luoyang"},
+  {code:"101190101", name:"南京", en:"Nanjing"},
+  {code:"101190201", name:"无锡", en:"Wuxi"},
+  {code:"101190401", name:"苏州", en:"Suzhou"},
+  {code:"101200101", name:"武汉", en:"Wuhan"},
+  {code:"101210101", name:"杭州", en:"Hangzhou"},
+  {code:"101210401", name:"宁波", en:"Ningbo"},
+  {code:"101210601", name:"温州", en:"Wenzhou"},
+  {code:"101220101", name:"合肥", en:"Hefei"},
+  {code:"101230101", name:"福州", en:"Fuzhou"},
+  {code:"101230201", name:"厦门", en:"Xiamen"},
+  {code:"101230501", name:"泉州", en:"Quanzhou"},
+  {code:"101240101", name:"南昌", en:"Nanchang"},
+  {code:"101250101", name:"长沙", en:"Changsha"},
+  {code:"101260101", name:"贵阳", en:"Guiyang"},
+  {code:"101270101", name:"成都", en:"Chengdu"},
+  {code:"101280101", name:"广州", en:"Guangzhou"},
+  {code:"101280601", name:"深圳", en:"Shenzhen"},
+  {code:"101280701", name:"珠海", en:"Zhuhai"},
+  {code:"101281601", name:"东莞", en:"Dongguan"},
+  {code:"101290101", name:"昆明", en:"Kunming"},
+  {code:"101300101", name:"南宁", en:"Nanning"},
+  {code:"101310101", name:"海口", en:"Haikou"},
+  {code:"101310201", name:"三亚", en:"Sanya"},
+  {code:"101320101", name:"香港", en:"Hong Kong"},
+  {code:"101330101", name:"澳门", en:"Macau"},
+  {code:"101340101", name:"台北", en:"Taipei"}
+];
+const DEFAULT_CITY = "101020100"; // 上海
+const LS_CITY = "wardrobe_city_code"; // localStorage 记住城市
+
+/* ===== 天气功能：运行时状态 ===== */
+let weatherState = { // 天气条展示数据
+  status:"loading",        // loading | ok | fail
+  city:"上海", cityCode:DEFAULT_CITY,
+  temp:null,               // 数字温度（实时），null=未知
+  text:"",                 // 天气状况文字
+  isRain:false,            // 是否下雨（含雨/雷/雨夹雪）
+  source:"",               // weathercn | wttr | month
+  time:""                  // 数据时间
+};
+let weatherSeasons = null; // 今日推荐季节集合，null=尚未确定（先按月份兜底）
+let recommendSeasonShown = ""; // 上次"今日穿搭推荐"使用的季节，用于天气就绪后联动刷新
+
 function $(id){return document.getElementById(id);}
 
 function seasonOfMonth(m){
@@ -248,6 +355,249 @@ function seasonOfMonth(m){
   if(m>=6 && m<=8) return "夏";
   if(m>=9 && m<=11) return "秋";
   return "冬";
+}
+
+/* ===== 天气功能 ===== */
+
+// 温度 → 推荐季节集合：≥26 夏 / 18~25 春秋 / 10~17 春秋偏凉+冬 / <10 冬
+function seasonsForTemp(t){
+  t = Number(t);
+  if(t>=26) return ["夏"];
+  if(t>=18) return ["春","秋"];
+  if(t>=10) return ["春","秋","冬"];
+  return ["冬"];
+}
+
+// 今日穿搭推荐的主季节：有实时天气按温度分档；无天气按当前月份
+function weatherMainSeason(){
+  const m = new Date().getMonth()+1;
+  const arr = (weatherSeasons && weatherSeasons.length) ? weatherSeasons : [seasonOfMonth(m)];
+  const ms = seasonOfMonth(m);
+  return arr.indexOf(ms)>=0 ? ms : arr[0];
+}
+
+function cityByCode(code){
+  return CITY_LIST.find(c=>c.code===String(code)) || null;
+}
+function cityByName(name){
+  const kw = String(name||"").trim();
+  if(!kw) return null;
+  return CITY_LIST.find(c=>c.name===kw) || CITY_LIST.find(c=>c.name.indexOf(kw)>=0) || null;
+}
+
+// 英文天气描述 → 中文（wttr.in 源用）
+function enWeatherZh(desc){
+  const rules = [
+    [/thundery|thunder|storm/i, "雷阵雨"],
+    [/torrential|heavy rain|heavy showers/i, "大雨"],
+    [/moderate rain|rain at times|heavy rain at times/i, "中雨"],
+    [/light rain|light drizzle|patchy rain|drizzle|light showers|showers/i, "小雨"],
+    [/freezing drizzle|sleet|ice pellets/i, "雨夹雪"],
+    [/blizzard|snow|snow shower/i, "雪"],
+    [/fog|mist|haze/i, "雾"],
+    [/overcast/i, "阴"],
+    [/partly cloudy|cloudy|cloud/i, "多云"],
+    [/clear|sunny/i, "晴"]
+  ];
+  for(const r of rules){ if(r[0].test(desc)) return r[1]; }
+  return desc || "";
+}
+
+// 天气条渲染（weatherState 驱动）
+function renderWeatherBar(){
+  const w = weatherState;
+  $("wbCity").textContent = w.city;
+  $("wbTemp").textContent = (w.temp!==null && !isNaN(w.temp)) ? Math.round(w.temp)+"°C" : "--";
+  $("wbText").textContent = w.text || (w.status==="fail" ? "天气获取失败" : "天气加载中…");
+  $("wbTime").textContent = "更新于 " + new Date().toLocaleTimeString("zh-CN",{hour:"2-digit",minute:"2-digit"});
+  const rainEl = $("wbRain");
+  if(w.isRain){
+    rainEl.style.display = "";
+    rainEl.textContent = "☔ 有雨，今日穿搭请防雨";
+  }else{
+    rainEl.style.display = "none";
+  }
+}
+
+// 天气就绪后的统一收尾：刷新置顶推荐区；若推荐季节与当前搭配展示不一致则换一套
+function refreshAfterWeather(){
+  renderTodayZone();
+  if(!WARDROBE.length) return;
+  const s = weatherMainSeason();
+  if(s && s!==recommendSeasonShown){
+    recommendSeasonShown = s;
+    renderRecommend(true);
+  }
+}
+
+// 场景1：天气就绪
+function applyWeather(w){
+  weatherState.status = "ok";
+  weatherState.temp = w.temp;
+  weatherState.text = w.text || "";
+  weatherState.isRain = !!w.isRain;
+  weatherState.city = w.city;
+  weatherState.cityCode = w.cityCode;
+  weatherState.source = w.source;
+  weatherState.time = w.time || "";
+  weatherSeasons = seasonsForTemp(w.temp);
+  renderWeatherBar();
+  refreshAfterWeather();
+}
+
+// 场景2：两个接口都失败 → 按月份降级（页面不白屏，天气条给出提示）
+function weatherFallbackMonth(city){
+  weatherState.status = "fail";
+  weatherState.city = city.name;
+  weatherState.cityCode = city.code;
+  weatherState.temp = null;
+  weatherState.text = "";
+  weatherState.isRain = false;
+  weatherState.source = "month";
+  weatherSeasons = null; // 走月份
+  renderWeatherBar();
+  refreshAfterWeather();
+}
+
+// 源A：中国天气网 weather.com.cn（JSONP script 绕过 CORS；接口带 Referer 防盗链，浏览器无法伪造，
+// 被拦/失败/缺测时自动切源B wttr.in → 月份兜底）
+function weatherFromWcCn(city){
+  const proto = location.protocol==="https:" ? "https:" : "http:";
+  const url = proto + "//d1.weather.com.cn/weather_index/" + city.code + ".html?callback=wcCb" + Date.now();
+  const s = document.createElement("script");
+  let done = false;
+  const timer = setTimeout(()=>{ finish(); weatherFromWttr(city); }, 6000);
+  function finish(){
+    if(done) return;
+    done = true;
+    clearTimeout(timer);
+    s.onload = null; s.onerror = null;
+    if(s.parentNode) s.parentNode.removeChild(s);
+  }
+  s.onload = function(){
+    finish();
+    const sk = window.dataSK;
+    if(sk && sk.temp && String(sk.temp)!=="999"){
+      applyWeather({
+        temp: Number(sk.temp),
+        text: sk.weather || ((window.cityDZ && window.cityDZ.weatherinfo) ? window.cityDZ.weatherinfo.weather : ""),
+        isRain: String(sk.rain)==="1" || /雨|雷/.test(sk.weather||""),
+        city: city.name,
+        cityCode: city.code,
+        source: "weathercn",
+        time: sk.time || ""
+      });
+    }else{
+      weatherFromWttr(city); // 缺测或被防盗链页替换
+    }
+  };
+  s.onerror = function(){ finish(); weatherFromWttr(city); };
+  s.src = url;
+  document.head.appendChild(s);
+}
+
+// 源B：wttr.in（https + CORS 开放，无需 Referer，可作等价可用接口）
+function weatherFromWttr(city){
+  const url = "https://wttr.in/" + encodeURIComponent(city.en) + "?format=j1&lang=zh";
+  fetch(url, {cache:"no-store"})
+    .then(r=>{ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); })
+    .then(d=>{
+      const cc = (d.current_condition||[])[0];
+      if(!cc || cc.temp_C===undefined || cc.temp_C===null) throw new Error("no data");
+      const desc = (cc.weatherDesc&&cc.weatherDesc[0]&&cc.weatherDesc[0].value)
+                || (cc.lang_zh&&cc.lang_zh[0]&&cc.lang_zh[0].value) || "";
+      applyWeather({
+        temp: Number(cc.temp_C),
+        text: enWeatherZh(desc),
+        isRain: /rain|drizzle|thunder|shower|sleet/i.test(desc) || Number(cc.precipMM||0)>0.2,
+        city: city.name,
+        cityCode: city.code,
+        source: "wttr",
+        time: cc.observation_time || ""
+      });
+    })
+    .catch(()=>{ weatherFallbackMonth(city); });
+}
+
+// 统一入口：切换城市 / 页面加载时调用
+function loadWeather(city){
+  if(!city) city = cityByCode(localStorage.getItem(LS_CITY)) || cityByCode(DEFAULT_CITY);
+  if(!city) city = cityByCode(DEFAULT_CITY);
+  weatherState.status = "loading";
+  weatherState.city = city.name;
+  weatherState.cityCode = city.code;
+  renderWeatherBar();
+  weatherFromWcCn(city);
+}
+
+// 城市切换交互：下拉 + 输入框查询
+function initCityControls(){
+  const sel = $("citySelect");
+  sel.innerHTML = CITY_LIST.map(c=>`<option value="${c.code}">${c.name}</option>`).join("");
+  const saved = localStorage.getItem(LS_CITY);
+  const initCode = cityByCode(saved) ? saved : DEFAULT_CITY;
+  sel.value = initCode;
+  sel.onchange = function(){ applyCityCode(sel.value); };
+  $("cityGoBtn").onclick = function(){
+    const hit = cityByName($("cityInput").value);
+    if(!hit){ showToast("未收录该城市："+($("cityInput").value||"")); return; }
+    $("cityInput").value = hit.name;
+    applyCityCode(hit.code);
+  };
+  $("cityInput").addEventListener("keydown", function(e){
+    if(e.key==="Enter"){
+      e.preventDefault();
+      $("cityGoBtn").click();
+    }
+  });
+}
+
+function applyCityCode(code){
+  const c = cityByCode(code);
+  if(!c) return;
+  localStorage.setItem(LS_CITY, c.code);
+  $("citySelect").value = c.code;
+  loadWeather(c);
+}
+
+// 衣物卡片 HTML（今日推荐带高亮徽标）
+function clothCardHtml(c, withTag){
+  const tags = (c.seasons||[]).map(s=>`<span class="tag s-${s}">${s}</span>`).join("");
+  const img = c.image
+    ? `<img src="${c.image}" alt="${c.name}" loading="lazy" onerror="this.outerHTML='<div class=&quot;noimg&quot;>🧥</div>'">`
+    : `<div class="noimg">🧥</div>`;
+  const color = c.color ? `<div class="color">${c.color}${c.brand? " · "+c.brand:""}</div>` : "";
+  const badge = withTag ? `<span class="today-tag">今日推荐</span>` : "";
+  return `<div class="card${withTag?" today-card-hl":""}" title="${c.name}${c.note? "｜"+c.note:""}">${img}<div class="info"><div class="name">${c.name}${badge}</div>${color}<div class="tags">${tags}</div></div></div>`;
+}
+
+// 卡片墙顶部置顶区：按当天温度把适配衣物排最前并高亮"今日推荐"
+function renderTodayZone(){
+  const zone = $("todayZone");
+  if(!zone) return;
+  if(weatherState.status==="loading" || !WARDROBE.length){
+    zone.innerHTML = "";
+    return;
+  }
+  const sArr = (weatherSeasons && weatherSeasons.length) ? weatherSeasons : [seasonOfMonth(new Date().getMonth()+1)];
+  const matched = WARDROBE.filter(c=>(c.seasons||[]).some(s=>sArr.indexOf(s)>=0));
+  const w = weatherState;
+  let reason;
+  if(w.status==="ok" && w.temp!==null){
+    reason = `今天 ${w.city} ${Math.round(w.temp)}°C${w.text? "，"+w.text:""}，适合穿${sArr.join("/")}季衣物`;
+    if(w.isRain) reason += "。☔ 有雨，优先选防泼水/易干单品，出门带伞";
+  }else{
+    reason = `天气获取失败，按 ${new Date().getMonth()+1} 月（${seasonOfMonth(new Date().getMonth()+1)}季）降级推荐`;
+  }
+  if(!matched.length){
+    zone.innerHTML = `<div class="today-reason">${reason}。暂无适配衣物，可先录入 ${sArr.join("、")} 季单品。</div>`;
+    return;
+  }
+  const top = matched.slice(0,12);
+  zone.innerHTML =
+    `<div class="section-title">今日推荐 <span class="cnt">${matched.length} 件适配</span></div>` +
+    `<div class="today-reason">${reason}</div>` +
+    `<div class="grid">${top.map(c=>clothCardHtml(c,true)).join("")}</div>`;
 }
 
 function loadStats(){
@@ -302,7 +652,8 @@ function renderWall(){
 function getTodayRecommend(force){
   const now = new Date();
   const m = now.getMonth()+1;
-  const season = seasonOfMonth(m);
+  // 有实时天气按温度定季，无天气按当前月份
+  const season = weatherMainSeason();
   const candidates = WARDROBE.filter(c=>(c.seasons||[]).includes(season));
   const hats = candidates.filter(c=>c.category==="帽子");
   const tops = candidates.filter(c=>["上衣","卫衣","背心"].includes(c.category));
@@ -388,8 +739,14 @@ function renderRecommend(force){
   $("recViewB").innerHTML = htmlB;
 
   const now = new Date();
+  recommendSeasonShown = r.season;
   const reasonParts = [];
-  reasonParts.push(`当前${now.getMonth()+1}月为${r.season}季`);
+  if(weatherState.status==="ok" && weatherState.temp!==null){
+    reasonParts.push(`今天${weatherState.city} ${Math.round(weatherState.temp)}°C${weatherState.text? " "+weatherState.text:""}，推荐${r.season}季搭配`);
+    if(weatherState.isRain) reasonParts.push(`☔ 有雨，出门记得带伞`);
+  }else{
+    reasonParts.push(`当前${now.getMonth()+1}月为${r.season}季`);
+  }
   if(r.hat) reasonParts.push(`帽子选${r.hat.name}${r.hat.color? "（"+r.hat.color+"）":""}`);
   if(r.top) reasonParts.push(`上装选择${r.top.name}（${r.top.color||"任意色"}）`);
   if(r.bottom) reasonParts.push(`下装搭配${r.bottom.name}`);
@@ -594,7 +951,7 @@ async function loadData(){
     WARDROBE = await res.json();
     buildDynamicFilters();
     $("todayLine").textContent = `共 ${WARDROBE.length} 件衣物 · 数据加载正常 · 更新于 ${new Date().toLocaleDateString("zh-CN")}`;
-    loadStats(); renderWall(); renderRecommend(false);
+    loadStats(); renderWall(); renderRecommend(false); renderTodayZone();
   }catch(err){
     $("todayLine").textContent = "数据加载失败："+err.message;
     $("wall").innerHTML = `<div class="empty">无法读取 wardrobe.json，请确认已在衣橱目录启动服务</div>`;
@@ -603,8 +960,10 @@ async function loadData(){
 
 initFilters();
 initOutfitFilters();
+initCityControls();
 loadData();
 loadOutfits();
+loadWeather(); // 天气异步加载：weather.com.cn JSONP → wttr.in → 月份降级，全程不阻塞页面
 </script>
 </body>
 </html>
