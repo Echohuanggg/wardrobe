@@ -1831,5 +1831,77 @@
     "note": "左胸同色压印New Balance Logo，腰部两侧抽绳",
     "created_at": "2026-08-25",
     "image": "thumbnails/105.png"
+  },
+  {
+    "id": 106,
+    "name": "深棕色假两件连帽长袖T恤",
+    "category": "上衣",
+    "color": "深棕",
+    "style": "假两件连帽长袖T恤",
+    "brand": "UNIQLO",
+    "material": "",
+    "seasons": [
+      "春",
+      "秋"
+    ],
+    "occasion": "",
+    "purchase_date": "202601",
+    "note": "UNIQLO春秋款；假两件连帽长袖，左上角UNIQLO品牌标识",
+    "created_at": "2026-10-19",
+    "image": "thumbnails/106.png"
+  },
+  {
+    "id": 107,
+    "name": "藏青色罗纹3D针织长袖翻领POLO衫",
+    "category": "上衣",
+    "color": "藏青",
+    "style": "罗纹3D针织长袖翻领POLO衫",
+    "brand": "UNIQLO",
+    "material": "",
+    "seasons": [
+      "春",
+      "秋"
+    ],
+    "occasion": "",
+    "purchase_date": "202601",
+    "note": "UNIQLO春秋款；3D KNIT技术，翻领罗纹，右上角UNIQLO品牌标识",
+    "created_at": "2026-10-19",
+    "image": "thumbnails/107.png"
+  },
+  {
+    "id": 108,
+    "name": "灰色高腰阔腿牛仔百褶长裙",
+    "category": "裙子",
+    "color": "灰",
+    "style": "高腰阔腿牛仔百褶长裙",
+    "brand": "UNIQLO",
+    "material": "",
+    "seasons": [
+      "春",
+      "秋"
+    ],
+    "occasion": "",
+    "purchase_date": "202601",
+    "note": "UNIQLO春秋款；高腰阔腿牛仔百褶，带UNIQLO悬挂价签",
+    "created_at": "2026-10-19",
+    "image": "thumbnails/108.png"
+  },
+  {
+    "id": 109,
+    "name": "雾霾蓝圆领长袖纽扣开衫毛衣",
+    "category": "上衣",
+    "color": "雾霾蓝",
+    "style": "圆领长袖纽扣开衫毛衣",
+    "brand": "UNIQLO",
+    "material": "",
+    "seasons": [
+      "春",
+      "秋"
+    ],
+    "occasion": "",
+    "purchase_date": "202601",
+    "note": "UNIQLO春秋款；圆领纽扣开衫毛衣，侧面S字母刺绣，带UNIQLO吊牌",
+    "created_at": "2026-10-19",
+    "image": "thumbnails/109.png"
   }
 ]
